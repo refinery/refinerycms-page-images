@@ -8,6 +8,7 @@ module Refinery
       end
       
       config.after_initialize do
+        <% # need to implement this in Refinery yet %>
         Refinery::Pages.register_tab do |tab|
           tab.name = "images"
           tab.template = "/admin/pages/tabs/images"

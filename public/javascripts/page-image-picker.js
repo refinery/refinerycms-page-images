@@ -51,8 +51,6 @@ reset_functionality = function() {
   reindex_images();
 }
 
-
-
 image_added = function(image) {
   last_portfolio_entry_image_id = "";
   new_list_item = (current_list_item = $('li.empty')).clone();
