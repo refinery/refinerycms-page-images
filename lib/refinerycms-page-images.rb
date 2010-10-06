@@ -23,7 +23,6 @@ module Refinery
       end
       
       config.after_initialize do
-
         Refinery::Pages::Tab.register do |tab|
           tab.name = "images"
           tab.partial = "/admin/pages/tabs/images"

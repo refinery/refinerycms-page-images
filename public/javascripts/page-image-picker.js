@@ -17,6 +17,8 @@ $(document).ready(function(){
       });
     }
   });
+  
+  reset_functionality();
 });
 
 reindex_images = function() {
@@ -98,7 +100,4 @@ image_added = function(image) {
   current_list_item.attr('id', 'image_' + image_id).removeClass('empty');
 
   new_list_item.appendTo($('#page_images'));
-  reset_functionality();
 }
-
-
