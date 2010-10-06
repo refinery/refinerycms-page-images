@@ -42,3 +42,9 @@
     width: 135px;
     height: 135px;
 }
+
+a#add_image_link {
+  line-height: 20px;
+  padding: 2px 5px 2px 5px;
+  display: inline;
+}

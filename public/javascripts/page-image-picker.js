@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  $('a[href*=page_image_picker]').click(function(){
+  $('#custom_images_tab a').click(function(){
     if (!(picker = $('#page_image_picker')).data('size-applied')){
       wym_box = $('.page_part:first .wym_box');
       iframe = $('.page_part:first iframe');
