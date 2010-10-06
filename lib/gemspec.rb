@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-version = '0.9'
+version = '0.9.1'
 raise "Could not get version so gemspec can not be built" if version.nil?
 files = %w( readme.md )
 %w(app config generators lib public rails test vendor).each do |dir|
