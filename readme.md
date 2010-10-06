@@ -22,3 +22,7 @@ Next run
     rake db:migrate
     
 Now when you start up your Refinery application, edit a page and there should be a b=new "Images" tab.
+
+## Todo
+
+Reordering doesn't store it's position yet.
