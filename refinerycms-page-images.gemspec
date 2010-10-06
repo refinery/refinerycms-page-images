@@ -7,4 +7,7 @@ Gem::Specification.new do |s|
   s.summary           = 'Page Images Engine for Refinery CMS'
   s.require_paths     = %w(lib)
   s.files             = Dir['lib/**/*', 'config/**/*', 'app/**/*']
+  s.author            = "Resolve Digital, David Jones"
+  s.email             = "dave@resolvedigital.com"
+  s.homepage          = "http://github.com/resolve/refinerycms-page-images"
 end
