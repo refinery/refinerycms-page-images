@@ -19,6 +19,18 @@ $(document).ready(function(){
   });
 });
 
+reindex_images = function() {
+  $('#page_images li input:hidden').each(function(i, input){
+    // make the image's name consistent with its position.
+    parts = $(input).attr('name').split(']');
+    parts[1] = ('[' + i)
+    $(input).attr('name', parts.join(']'));
+
+    // make the image's id consistent with its position.
+    $(input).attr('id', $(input).attr('id').replace(/_\d_/, '_'+i+'_').replace(/_\d/, '_'+i));
+  });
+}
+
 reset_functionality = function() {
   $("#page_images").sortable({
     'tolerance': 'pointer'
@@ -52,7 +64,6 @@ reset_functionality = function() {
 }
 
 image_added = function(image) {
-  last_portfolio_entry_image_id = "";
   new_list_item = (current_list_item = $('li.empty')).clone();
   image_id = $(image).attr('id').replace('image_', '');
   current_list_item.find('input:hidden').val(image_id);
@@ -89,3 +100,5 @@ image_added = function(image) {
   new_list_item.appendTo($('#page_images'));
   reset_functionality();
 }
+
+
