@@ -18,7 +18,7 @@ Add this line to your applications `Gemfile`
 Next run
 
     bundle install
-    rake refinerycms_page_images:install
+    rails g refinerycms_page_images
     rake db:migrate
     
 Now when you start up your Refinery application, edit a page and there should be a b=new "Images" tab.
