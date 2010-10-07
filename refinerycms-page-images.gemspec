@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name              = %q{refinerycms-page-images}
-  s.version           = %q{0.9.3}
+  s.version           = %q{0.9.4}
   s.description       = %q{Page Images Engine for Refinery CMS}
   s.date              = %q{2010-10-07}
   s.summary           = %q{Page Images Engine for Refinery CMS}
@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
   s.files             = [
     'readme.md',
     'app/models',
-    'app/models/images_pages.rb',
+    'app/models/image_page.rb',
     'app/views',
     'app/views/admin',
     'app/views/admin/pages',
