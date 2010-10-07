@@ -93,7 +93,6 @@ image_added = function(image) {
 }
 
 reindex_images = function() {
-  alert("reindexing images");
   $('#page_images li input:hidden').each(function(i, input){
     
     // make the image's name consistent with its position.
