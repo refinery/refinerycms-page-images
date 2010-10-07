@@ -6,7 +6,7 @@ Page Images allows you to relate one or more images to any page in Refinery whic
 
 ## Requirements
 
-This plugin is only for Refinery 0.9.9 and above.
+* refinerycms >= 0.9.9
 
 ## Features
 
