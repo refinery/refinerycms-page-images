@@ -2,12 +2,16 @@
 
 ## About
 
-This engine does two main things:
+Page Images allows you to relate one or more images to any page in Refinery which makes it really easy for you to create simple image galleries with lightbox style popups on the front end page views.
 
-1. Adds a relationship between pages and images
-2. A new "Images" tab will appear when editing a page in the "Pages" section
+## Requirements
 
-This allows you to relate one or more images to any page in Refinery which makes it really easy for you to create simple image galleries with lightbox style popups on the front end page views.
+This plugin is only for Refinery 0.9.9 and above.
+
+## Features
+
+* Ability to select one or more images from the image picker and relate them to a page
+* Reordering support, simply drag into order
 
 ## Install
 
@@ -22,6 +26,21 @@ Next run
     rake db:migrate
     
 Now when you start up your Refinery application, edit a page and there should be a new "Images" tab.
+
+## Usage
+
+# app/views/pages/show.html.erb
+    
+    <% content_for :body_content_right do %>
+      <ul id='gallery'>
+        <% @page.images.each do |i| %>
+          <li>
+            <%= link_to image_tag(i.thumbnail("200x200#c").url), i.thumbnail("900x600").url %>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+    <%= render :partial => "/shared/content_page" %>
 
 ## Screenshot
 
