@@ -21,18 +21,6 @@ $(document).ready(function(){
   reset_functionality();
 });
 
-reindex_images = function() {
-  $('#page_images li input:hidden').each(function(i, input){
-    // make the image's name consistent with its position.
-    parts = $(input).attr('name').split(']');
-    parts[1] = ('[' + i)
-    $(input).attr('name', parts.join(']'));
-
-    // make the image's id consistent with its position.
-    $(input).attr('id', $(input).attr('id').replace(/_\d_/, '_'+i+'_').replace(/_\d/, '_'+i));
-  });
-}
-
 reset_functionality = function() {
   $("#page_images").sortable({
     'tolerance': 'pointer'
@@ -86,6 +74,7 @@ image_added = function(image) {
            , src: result.url
          }).appendTo(current_list_item);
        }
+       
      },
      error: function(xhr, txt, status) {
        if (console && console.log) {
@@ -100,4 +89,19 @@ image_added = function(image) {
   current_list_item.attr('id', 'image_' + image_id).removeClass('empty');
 
   new_list_item.appendTo($('#page_images'));
+  reindex_images();
+}
+
+reindex_images = function() {
+  alert("reindexing images");
+  $('#page_images li input:hidden').each(function(i, input){
+    
+    // make the image's name consistent with its position.
+    parts = $(input).attr('name').split(']');
+    parts[1] = ('[' + i)
+    $(input).attr('name', parts.join(']'));
+
+    // make the image's id consistent with its position.
+    $(input).attr('id', $(input).attr('id').replace(/_\d_/, '_'+i+'_').replace(/_\d/, '_'+i));
+  });
 }
