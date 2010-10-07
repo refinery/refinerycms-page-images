@@ -29,7 +29,7 @@ Now when you start up your Refinery application, edit a page and there should be
 
 ## Usage
 
-# app/views/pages/show.html.erb
+`app/views/pages/show.html.erb`
     
     <% content_for :body_content_right do %>
       <ul id='gallery'>
