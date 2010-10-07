@@ -13,7 +13,7 @@ This allows you to relate one or more images to any page in Refinery which makes
 
 Add this line to your applications `Gemfile`
 
-    gem 'refinerycms-page-images', '= 0.9'
+    gem 'refinerycms-page-images', '= 0.9.4'
     
 Next run
 
@@ -21,8 +21,8 @@ Next run
     rails g refinerycms_page_images
     rake db:migrate
     
-Now when you start up your Refinery application, edit a page and there should be a b=new "Images" tab.
+Now when you start up your Refinery application, edit a page and there should be a new "Images" tab.
 
-## Todo
+## Screenshot
 
-Reordering doesn't store it's position yet.
+![Refinery CMS Page Images Screenshot](http://refinerycms.com/system/images/0000/1736/refinerycms-page-images.png)
