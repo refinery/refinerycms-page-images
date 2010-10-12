@@ -89,7 +89,7 @@ image_added = function(image) {
   current_list_item.attr('id', 'image_' + image_id).removeClass('empty');
 
   new_list_item.appendTo($('#page_images'));
-  reindex_images();
+  reset_functionality();
 }
 
 reindex_images = function() {
@@ -97,7 +97,7 @@ reindex_images = function() {
     
     // make the image's name consistent with its position.
     parts = $(input).attr('name').split(']');
-    parts[1] = ('[' + i)
+    parts[1] = ('[' + i);
     $(input).attr('name', parts.join(']'));
 
     // make the image's id consistent with its position.

@@ -1,17 +1,15 @@
 <div class='wym_skin_refinery page_part' id='page_image_picker'>
   <div class='wym_area_top'>
-    <ul class='wym_section'>
-      <li>
-        <%= link_to 'Add Image',
-                    insert_admin_images_url(
-                      :dialog => true,
-                      :width => 950,
-                      :height => 510,
-                      :callback => "image_added"
-                    ),
-                    :id => "add_image_link" %>
-      </li>
-    </ul>
+    <span class='clearfix label_inline_with_link'>
+      <%= link_to 'Add Image',
+                  insert_admin_images_url(
+                    :dialog => true,
+                    :width => 950,
+                    :height => 510,
+                    :callback => "image_added"
+                  ),
+                  :id => "add_image_link" %>
+    </span>
   </div>
   <div class='wym_box field images_field'>
     <ul id='page_images' class='clearfix'>
@@ -22,7 +20,7 @@
         </li>
       <% end %>
       <li class='empty'>
-        <%= hidden_field_tag "page[images_attributes][#{@page.images.size}][id]" %>
+        <%= hidden_field_tag "#{f.object.class.name.underscore}[images_attributes][#{f.object.images.size}][id]" %>
       </li>
     </ul>
   </div>
