@@ -6,12 +6,13 @@ module Refinery
       initializer "static assets" do |app|
         app.middleware.insert_after ::ActionDispatch::Static, ::ActionDispatch::Static, "#{root}/public"
       end
-      
+
       config.to_prepare do
         Page.module_eval do
-          
           has_many :image_pages
-          has_many :images, :through => :image_pages
+          has_many :images, :through => :image_pages, :order => 'position ASC'
+          # accepts_nested_attributes_for MUST come before def images_attributes=
+          # this is because images_attributes= overrides accepts_nested_attributes_for.
           accepts_nested_attributes_for :images, :allow_destroy => false
 
           def images_attributes=(data)
@@ -22,7 +23,7 @@ module Refinery
           end
         end
       end
-      
+
       config.after_initialize do
         Refinery::Pages::Tab.register do |tab|
           tab.name = "images"
