@@ -6,7 +6,7 @@ Page Images allows you to relate one or more images to any page in Refinery whic
 
 ## Requirements
 
-* refinerycms >= 0.9.9
+* refinerycms >= 0.9.9 (as yet *unreleased*)
 
 ## Features
 
@@ -18,19 +18,19 @@ Page Images allows you to relate one or more images to any page in Refinery whic
 Add this line to your applications `Gemfile`
 
     gem 'refinerycms-page-images', '= 0.9.4'
-    
+
 Next run
 
     bundle install
     rails g refinerycms_page_images
     rake db:migrate
-    
+
 Now when you start up your Refinery application, edit a page and there should be a new "Images" tab.
 
 ## Usage
 
 `app/views/pages/show.html.erb`
-    
+
     <% content_for :body_content_right do %>
       <ul id='gallery'>
         <% @page.images.each do |i| %>
