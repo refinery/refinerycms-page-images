@@ -1,10 +1,7 @@
 #!/usr/bin/env ruby
-version = '0.9.5'
+version = '0.9.6'
 raise "Could not get version so gemspec can not be built" if version.nil?
-files = %w( readme.md )
-%w(app config generators lib public rails test vendor).each do |dir|
-  files += Dir.glob("#{dir}/**/*") if File.directory?(dir)
-end
+files = (Dir.glob("*") | Dir.glob("**/*")).reject{|f| f =~ %r{.gem(spec)?$}}
 
 gemspec = <<EOF
 Gem::Specification.new do |s|
