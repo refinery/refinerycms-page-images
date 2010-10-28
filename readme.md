@@ -33,12 +33,12 @@ If you get an error like
   
 It means your Refinery version isn't new enough. To fix that you need to update the Refinery CMS `Gemfile` line to this
 
-  gem 'refinerycms', :git => "git://github.com/resolve/refinerycms.git"
+    gem 'refinerycms', :git => "git://github.com/resolve/refinerycms.git"
   
 Then run:
 
-  bundle install
-  rake refinery:update
+    bundle install
+    rake refinery:update
   
 And then try again.
 
