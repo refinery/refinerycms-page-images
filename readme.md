@@ -27,6 +27,18 @@ Next run
 
 Now when you start up your Refinery application, edit a page and there should be a new "Images" tab.
 
+If you get an error like
+
+  uninitialized constant Refinery::Pages::Tab
+  
+It means your Refinery version isn't new enough. To fix that you need to update the Refinery CMS `Gemfile` line to this
+
+  gem 'refinerycms', :git => "git://github.com/resolve/refinerycms.git"
+  bundle install
+  rake refinery:update
+  
+And then try again.
+
 ## Usage
 
 `app/views/pages/show.html.erb`
