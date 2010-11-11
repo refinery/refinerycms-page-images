@@ -1,8 +1,8 @@
 Gem::Specification.new do |s|
   s.name              = %q{refinerycms-page-images}
-  s.version           = %q{0.9.6}
+  s.version           = %q{0.9.7}
   s.description       = %q{Page Images Engine for Refinery CMS}
-  s.date              = %q{2010-10-26}
+  s.date              = %q{2010-11-11}
   s.summary           = %q{Page Images Engine for Refinery CMS}
   s.email             = %q{dave@resolvedigital.com}
   s.homepage          = %q{http://github.com/resolve/refinerycms-page-images}

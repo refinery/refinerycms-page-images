@@ -17,7 +17,7 @@ Page Images allows you to relate one or more images to any page in Refinery whic
 
 Add this line to your applications `Gemfile`
 
-    gem 'refinerycms-page-images', '~> 0.9.6'
+    gem 'refinerycms-page-images', '~> 0.9.7'
 
 Next run
 
@@ -30,17 +30,18 @@ Now when you start up your Refinery application, edit a page and there should be
 If you get an error like
 
   uninitialized constant Refinery::Pages::Tab
-  
+
 It means your Refinery version isn't new enough. To fix that you need to update the Refinery CMS `Gemfile` line to this
 
     gem 'refinerycms', :git => "git://github.com/resolve/refinerycms.git"
-  
+
 Then run:
 
     bundle install
     rake refinery:update
-  
-And then try again.
+
+And then try again. Note that doing this will likely mean that you need to fix your application
+for any changes that have happened since the version of Refinery CMS that you were using.
 
 ## Usage
 

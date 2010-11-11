@@ -17,7 +17,7 @@ $(document).ready(function(){
       });
     }
   });
-  
+
   reset_functionality();
 });
 
@@ -57,34 +57,12 @@ image_added = function(image) {
   new_list_item = (current_list_item = $('li.empty')).clone();
   image_id = $(image).attr('id').replace('image_', '');
   current_list_item.find('input:hidden').val(image_id);
-  $.ajax({
-    async: false,
-    url: '/refinery/images/'+image_id+'/url',
-    data: {size: '135x135#c'},
-    success: function (result, status, xhr) {
-      if (result.error) {
-        if (console && console.log) {
-           console.log("Something went wrong with the image insertion!");
-           console.log(result);
-         }
-       } else {
-         (img = $("<img />")).attr({
-           title: $(image).attr('title')
-           , alt: $(image).attr('alt')
-           , src: result.url
-         }).appendTo(current_list_item);
-       }
-       
-     },
-     error: function(xhr, txt, status) {
-       if (console && console.log) {
-         console.log("Something went wrong with the image insertion!");
-         console.log(xhr);
-         console.log(txt);
-         console.log(status);
-       }
-     }
-   });
+
+  $("<img />").attr({
+    title: $(image).attr('title')
+    , alt: $(image).attr('alt')
+    , src: $(image).attr('data-grid'); // use 'grid' size that is built into Refinery CMS (135x135#c).
+  }).appendTo(current_list_item);
 
   current_list_item.attr('id', 'image_' + image_id).removeClass('empty');
 
@@ -94,7 +72,7 @@ image_added = function(image) {
 
 reindex_images = function() {
   $('#page_images li input:hidden').each(function(i, input){
-    
+
     // make the image's name consistent with its position.
     parts = $(input).attr('name').split(']');
     parts[1] = ('[' + i);
