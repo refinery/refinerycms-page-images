@@ -17,6 +17,7 @@ module Refinery
 
           def images_attributes=(data)
             self.images.clear
+            data.reject!{|i, d| d['id'].blank?}
             self.images += (0..(data.length-1)).collect { |i|
               (Image.find(data[i.to_s]['id'].to_i) rescue nil)
             }.compact
