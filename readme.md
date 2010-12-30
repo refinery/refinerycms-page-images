@@ -6,7 +6,7 @@ Page Images allows you to relate one or more images to any page in Refinery whic
 
 ## Requirements
 
-* refinerycms >= 0.9.9 (as yet *unreleased*)
+* refinerycms >= 0.9.9
 
 ## Features
 
@@ -17,7 +17,7 @@ Page Images allows you to relate one or more images to any page in Refinery whic
 
 Add this line to your applications `Gemfile`
 
-    gem 'refinerycms-page-images', '~> 0.9.7'
+    gem 'refinerycms-page-images', '~> 0.9.9'
 
 Next run
 
