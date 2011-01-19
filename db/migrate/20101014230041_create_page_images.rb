@@ -1,4 +1,4 @@
-class CreateImagePages < ActiveRecord::Migration
+class CreatePageImages < ActiveRecord::Migration
 
   def self.up
     create_table :image_pages, :id => false do |t|
