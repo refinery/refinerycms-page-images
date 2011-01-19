@@ -30,8 +30,8 @@ reset_functionality = function() {
     , stop: reindex_images
   });
 
-  $('#content #page_images li:not(.empty)').each(function(index, li) {
-    $(this).hover(function(e){
+  $('#content #page_images li:not(.empty)').live('hover', function(e) {
+    if (e.type == 'mouseenter' || e.type == 'mouseover') {
       if ((image_actions = $(this).find('.image_actions')).length == 0) {
         image_actions = $("<div class='image_actions'></div>");
         img_delete = $("<img src='/images/refinery/icons/delete.png' width='16' height='16' />");
@@ -41,13 +41,17 @@ reset_functionality = function() {
           reindex_images();
         });
 
-        image_actions.appendTo($(li));
+        img_caption = $("<img src='/images/refinery/icons/user_comment.png' width='16' height='16' class='caption' />");
+        img_caption.appendTo(image_actions);
+        img_caption.click(open_image_caption);
+
+        image_actions.appendTo($(this));
       }
 
       image_actions.show();
-    }, function(e) {
+    } else if (e.type == 'mouseleave' || e.type == 'mouseout') {
       $(this).find('.image_actions').hide();
-    });
+    }
   });
 
   reindex_images();
@@ -70,9 +74,59 @@ image_added = function(image) {
   reset_functionality();
 }
 
-reindex_images = function() {
-  $('#page_images li input:hidden').each(function(i, input){
+open_image_caption = function(e) {
+  // move the textarea out of the list item, and then move the textarea back into it when we click done.
+  (list_item = $(this).parents('li')).addClass('current_caption_list_item');
+  textarea = list_item.find('.textarea_wrapper_for_wym > textarea');
 
+  WYMeditor.loaded = function(){
+    $('.wym_box').css({'width':null});
+  };
+
+  textarea.after($("<div class='form-actions'><div class='form-actions-left'><a class='button'>Done</a></div></div>"));
+  textarea.parent().dialog({
+             title: 'Add Caption'
+             , modal: true
+             , resizable: false
+             , autoOpen: true
+             , width: 928
+             , height: 530
+           });
+
+  $('.ui-dialog:visible .ui-dialog-titlebar-close, .ui-dialog:visible .form-actions a.button')
+    .addClass('wymupdate')
+    .bind('click',
+      $.proxy(function(e) {
+        $(this).removeClass('wymeditor')
+               .removeClass('active_rotator_wymeditor');
+
+        $this_parent = $(this).parent();
+        $this_parent.appendTo('li.current_caption_list_item').dialog('close').data('dialog', null);
+        $this_parent.find('.form-actions').remove();
+        $this_parent.find('.wym_box').remove();
+        $this_parent.css('height', 'auto');
+        $this_parent.removeClass('ui-dialog-content').removeClass('ui-widget-content');
+
+        $('li.current_caption_list_item').removeClass('current_caption_list_item');
+
+        $('.ui-dialog, .ui-widget-overlay:visible').remove();
+      }, textarea)
+    );
+
+  textarea.addClass('wymeditor active_rotator_wymeditor widest').wymeditor(wymeditor_boot_options);
+}
+
+reindex_images = function() {
+  $('#page_images li textarea:hidden').each(function(i, input){
+    // make the image's name consistent with its position.
+    parts = $(input).attr('name').split(']');
+    parts[1] = ('[' + i);
+    $(input).attr('name', parts.join(']'));
+
+    // make the image's id consistent with its position.
+    $(input).attr('id', $(input).attr('id').replace(/_\d_/, '_'+i+'_').replace(/_\d/, '_'+i));
+  });
+  $('#page_images li input:hidden').each(function(i, input){
     // make the image's name consistent with its position.
     parts = $(input).attr('name').split(']');
     parts[1] = ('[' + i);

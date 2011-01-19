@@ -15,12 +15,18 @@ module Refinery
           # this is because images_attributes= overrides accepts_nested_attributes_for.
           accepts_nested_attributes_for :images, :allow_destroy => false
 
-          def images_attributes=(data)
-            self.images.clear
-            data.reject!{|i, d| d['id'].blank?}
-            self.images += (0..(data.length-1)).collect { |i|
-              (Image.find(data[i.to_s]['id'].to_i) rescue nil)
-            }.compact
+          def images_attributes=(values)
+            values.reject!{|i, data| data['id'].blank?}
+            self.images.each do |image|
+              unless values.any? {|k, vals| vals['id'].to_s == image.id.to_s}
+                values[values.length.to_s] = {
+                  :id => image.id,
+                  :_destroy => true
+                }
+              end
+            end
+            raise values.inspect
+            assign_nested_attributes_for_collection_association(:images, values)
           end
         end
       end
