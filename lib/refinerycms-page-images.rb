@@ -15,18 +15,23 @@ module Refinery
           # this is because images_attributes= overrides accepts_nested_attributes_for.
           accepts_nested_attributes_for :images, :allow_destroy => false
 
-          def images_attributes=(values)
-            values.reject!{|i, data| data['id'].blank?}
-            self.images.each do |image|
-              unless values.any? {|k, vals| vals['id'].to_s == image.id.to_s}
-                values[values.length.to_s] = {
-                  :id => image.id,
-                  :_destroy => true
-                }
+          def images_attributes=(data)
+            ImagePage.delete_all(:page_id => self.id)
+
+            (0..(data.length-1)).each do |i|
+              unless (image_data = data[i.to_s]).nil? or image_data['id'].blank?
+                image_page = self.image_pages.new(:image_id => image_data['id'].to_i, :position => i)
+                # Add caption if supported
+                if RefinerySetting.find_or_set(:page_images_captions, false)
+                  image_page.caption = image_data['caption']
+                end
+                self.image_pages << image_page
               end
             end
-            raise values.inspect
-            assign_nested_attributes_for_collection_association(:images, values)
+          end
+
+          def caption_for_image_index(index)
+            self.image_pages[index].try(:caption).presence || ""
           end
         end
       end
