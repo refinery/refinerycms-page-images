@@ -22,6 +22,10 @@ $(document).ready(function(){
 });
 
 reset_functionality = function() {
+  WYMeditor.onload_functions.push(function(){
+    $('.wym_box').css({'width':null});
+  });
+
   $("#page_images").sortable({
     'tolerance': 'pointer'
     , 'placeholder': 'placeholder'
@@ -79,10 +83,6 @@ open_image_caption = function(e) {
   (list_item = $(this).parents('li')).addClass('current_caption_list_item');
   textarea = list_item.find('.textarea_wrapper_for_wym > textarea');
 
-  WYMeditor.loaded = function(){
-    $('.wym_box').css({'width':null});
-  };
-
   textarea.after($("<div class='form-actions'><div class='form-actions-left'><a class='button'>Done</a></div></div>"));
   textarea.parent().dialog({
              title: 'Add Caption'
@@ -97,8 +97,7 @@ open_image_caption = function(e) {
     .addClass('wymupdate')
     .bind('click',
       $.proxy(function(e) {
-        $(this).removeClass('wymeditor')
-               .removeClass('active_rotator_wymeditor');
+        $(this).removeClass('active_rotator_wymeditor');
 
         $this_parent = $(this).parent();
         $this_parent.appendTo('li.current_caption_list_item').dialog('close').data('dialog', null);
@@ -113,7 +112,8 @@ open_image_caption = function(e) {
       }, textarea)
     );
 
-  textarea.addClass('wymeditor active_rotator_wymeditor widest').wymeditor(wymeditor_boot_options);
+  textarea.addClass('wymeditor active_rotator_wymeditor widest');
+  WYMeditor.init();
 }
 
 reindex_images = function() {
