@@ -94,10 +94,12 @@ open_image_caption = function(e) {
            });
 
   $('.ui-dialog:visible .ui-dialog-titlebar-close, .ui-dialog:visible .form-actions a.button')
-    .addClass('wymupdate')
     .bind('click',
       $.proxy(function(e) {
-        $(this).removeClass('active_rotator_wymeditor');
+        // first, update the editor because we're blocking event bubbling (third argument to bind set to false).
+        $(this).data('wymeditor').update();
+        $(this).removeClass('wymeditor')
+               .removeClass('active_rotator_wymeditor');
 
         $this_parent = $(this).parent();
         $this_parent.appendTo('li.current_caption_list_item').dialog('close').data('dialog', null);
@@ -110,10 +112,9 @@ open_image_caption = function(e) {
 
         $('.ui-dialog, .ui-widget-overlay:visible').remove();
       }, textarea)
-    );
+    , false);
 
-  textarea.addClass('wymeditor active_rotator_wymeditor widest');
-  WYMeditor.init();
+  textarea.addClass('wymeditor active_rotator_wymeditor widest').wymeditor(wymeditor_boot_options);
 }
 
 reindex_images = function() {
