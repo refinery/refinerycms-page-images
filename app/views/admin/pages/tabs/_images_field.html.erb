@@ -1,0 +1,30 @@
+<div class='wym_box field images_field'>
+  <ul id='page_images' class='clearfix'>
+    <%= f.fields_for :images do |image_form| %>
+      <li id='image_<%= image_form.object.id %>'>
+        <%= image_form.hidden_field :id %>
+        <%= image_fu image_form.object, '135x135#c' %>
+        <% if RefinerySetting.find_or_set(:page_images_captions, false) %>
+          <div class='textarea_wrapper_for_wym'>
+            <% index = image_form.object_name.split('[').last.split(']').first.to_i %>
+            <%= text_area_tag "#{f.object_name}[images_attributes][#{index}][caption]",
+                              f.object.caption_for_image_index(index),
+                              :style => 'display: none',
+                              :id => "page_captions_#{index}" %>
+          </div>
+        <% end %>
+      </li>
+    <% end %>
+    <li class='empty'>
+      <%= hidden_field_tag "#{f.object.class.name.underscore}[images_attributes][#{f.object.images.size}][id]" %>
+      <% if RefinerySetting.find_or_set(:page_images_captions, false) %>
+        <div class='textarea_wrapper_for_wym'>
+          <%= text_area_tag "#{f.object_name}[images_attributes][#{f.object.images.size}][caption]",
+                            '',
+                            :style => 'display: none',
+                            :id => "page_captions_#{f.object.images.size}" %>
+        </div>
+      <% end %>
+    </li>
+  </ul>
+</div>
