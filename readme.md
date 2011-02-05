@@ -17,7 +17,7 @@ Page Images allows you to relate one or more images to any page in Refinery whic
 
 Add this line to your applications `Gemfile`
 
-    gem 'refinerycms-page-images', '~> 1.0'
+    gem 'refinerycms-page-images', '~> 1.0.1'
 
 Next run
 
