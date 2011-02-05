@@ -29,7 +29,7 @@ Now when you start up your Refinery application, edit a page and there should be
 
 If you get an error like
 
-  uninitialized constant Refinery::Pages::Tab
+    uninitialized constant Refinery::Pages::Tab
 
 It means your Refinery version isn't new enough. To fix that you need to update the Refinery CMS `Gemfile` line to this
 
