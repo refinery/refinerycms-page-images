@@ -10,7 +10,8 @@
             <%= text_area_tag "#{f.object_name}[images_attributes][#{index}][caption]",
                               f.object.caption_for_image_index(index),
                               :style => 'display: none',
-                              :id => "page_captions_#{index}" %>
+                              :id => "page_captions_#{index}",
+                              :class => 'page_caption' %>
           </div>
         <% end %>
       </li>
@@ -22,7 +23,8 @@
           <%= text_area_tag "#{f.object_name}[images_attributes][#{f.object.images.size}][caption]",
                             '',
                             :style => 'display: none',
-                            :id => "page_captions_#{f.object.images.size}" %>
+                            :id => "page_captions_#{f.object.images.size}",
+                            :class => 'page_caption' %>
         </div>
       <% end %>
     </li>

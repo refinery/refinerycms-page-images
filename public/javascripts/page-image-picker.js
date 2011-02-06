@@ -45,9 +45,13 @@ reset_functionality = function() {
           reindex_images();
         });
 
-        img_caption = $("<img src='/images/refinery/icons/user_comment.png' width='16' height='16' class='caption' />");
-        img_caption.appendTo(image_actions);
-        img_caption.click(open_image_caption);
+        if ($(this).find('textarea.page_caption').length > 0) {
+          img_caption = $("<img src='/images/refinery/icons/user_comment.png' width='16' height='16' class='caption' />");
+          img_caption.appendTo(image_actions);
+          img_caption.click(open_image_caption);
+        } else {
+          image_actions.addClass('no_captions');
+        }
 
         image_actions.appendTo($(this));
       }

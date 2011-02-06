@@ -29,6 +29,9 @@
   top: 0px;
   width: 135px;
 }
+#page_images li .image_actions.no_captions {
+  background: transparent;
+}
 #page_images > li .image_actions img.caption {
   position: absolute;
   right: 3px;
