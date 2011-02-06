@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name              = %q{refinerycms-page-images}
-  s.version           = %q{1.0.1}
+  s.version           = %q{1.0.2}
   s.description       = %q{Page Images Engine for Refinery CMS}
   s.date              = %q{2011-02-06}
   s.summary           = %q{Page Images Engine for Refinery CMS}
@@ -14,6 +14,7 @@ Gem::Specification.new do |s|
   s.files             = [
     'app',
     'db',
+    'features',
     'lib',
     'public',
     'readme.md',
@@ -29,6 +30,7 @@ Gem::Specification.new do |s|
     'db/migrate',
     'db/migrate/20101014230041_create_page_images.rb',
     'db/migrate/20101014230042_add_caption_to_image_pages.rb',
+    'features/attach_page_images.feature',
     'lib/gemspec.rb',
     'lib/generators',
     'lib/generators/refinerycms_page_images_generator.rb',

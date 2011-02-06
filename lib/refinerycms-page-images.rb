@@ -37,9 +37,13 @@ module Refinery
       end
 
       config.after_initialize do
-        Refinery::Pages::Tab.register do |tab|
+        ::Refinery::Pages::Tab.register do |tab|
           tab.name = "images"
           tab.partial = "/admin/pages/tabs/images"
+        end
+        ::Refinery::Plugin.register do |plugin|
+          plugin.name = "refinerycms_page_images"
+          plugin.hide_from_menu = true
         end
       end
     end
