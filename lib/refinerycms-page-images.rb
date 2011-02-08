@@ -42,7 +42,7 @@ module Refinery
           tab.partial = "/admin/pages/tabs/images"
         end
         ::Refinery::Plugin.register do |plugin|
-          plugin.name = "refinerycms_page_images"
+          plugin.name = "page_images"
           plugin.hide_from_menu = true
         end
       end
