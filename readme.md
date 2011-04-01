@@ -12,6 +12,7 @@ Page Images allows you to relate one or more images to any page in Refinery whic
 
 * Ability to select one or more images from the image picker and relate them to a page
 * Reordering support, simply drag into order
+* Optionally include captions with each image.
 
 ## Install
 
@@ -42,6 +43,10 @@ Then run:
 
 And then try again. Note that doing this will likely mean that you need to fix your application
 for any changes that have happened since the version of Refinery CMS that you were using.
+
+## Enable Captions
+
+Change the setting "Page Images Captions" to "true" to enable captions.
 
 ## Usage
 
