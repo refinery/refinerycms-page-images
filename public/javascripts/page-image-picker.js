@@ -17,6 +17,25 @@ $(document).ready(function(){
       });
     }
   });
+  
+  // Webkit browsers don't like the textarea being moved around the DOM,
+  // they ignore the new contents. This is fixed below by adding a hidden
+  // field that statys in place.
+  $('#content #page_images li textarea:hidden').each(function(index) {
+    var old_name = $(this).attr('name');
+    $(this).attr('data-old-id', $(this).attr('id'));
+    $(this).attr('name', 'ignore_me_' + index);
+    $(this).attr('id', 'ignore_me_' + index);
+    
+    var hidden = $('<input>')
+                  .addClass('caption')
+                  .attr('type', 'hidden')
+                  .attr('name', old_name)
+                  .attr('id', $(this).attr('data-old-id'))
+                  .val($(this).val());
+    
+    $(this).parents('li[id*=image_]').append(hidden);
+  });
 
   reset_functionality();
 });
@@ -84,7 +103,7 @@ image_added = function(image) {
 
 open_image_caption = function(e) {
   // move the textarea out of the list item, and then move the textarea back into it when we click done.
-  (list_item = $(this).parents('li')).addClass('current_caption_list_item');
+  (list_item = $(this).parents('li[id*=image_]')).addClass('current_caption_list_item');
   textarea = list_item.find('.textarea_wrapper_for_wym > textarea');
 
   textarea.after($("<div class='form-actions'><div class='form-actions-left'><a class='button'>Done</a></div></div>"));
@@ -115,6 +134,8 @@ open_image_caption = function(e) {
         $('li.current_caption_list_item').removeClass('current_caption_list_item');
 
         $('.ui-dialog, .ui-widget-overlay:visible').remove();
+        
+        $('#' + $(this).attr('data-old-id')).val($(this).val());
       }, textarea)
     , false);
 
@@ -124,6 +145,16 @@ open_image_caption = function(e) {
 reindex_images = function() {
   $('#page_images li textarea:hidden').each(function(i, input){
     // make the image's name consistent with its position.
+    parts = $(input).attr('name').split('_');
+    parts[2] = ('' + i);
+    $(input).attr('name', parts.join('_'));
+
+    // make the image's id consistent with its position.
+    $(input).attr('id', $(input).attr('id').replace(/_\d/, '_' + i));
+    $(input).attr('data-old-id', $(input).attr('data-old-id').replace(/_\d_/, '_'+i+'_').replace(/_\d/, '_' + i));
+  });
+  $('#page_images li input:hidden:not(.caption)').each(function(i, input){
+    // make the image's name consistent with its position.
     parts = $(input).attr('name').split(']');
     parts[1] = ('[' + i);
     $(input).attr('name', parts.join(']'));
@@ -131,7 +162,7 @@ reindex_images = function() {
     // make the image's id consistent with its position.
     $(input).attr('id', $(input).attr('id').replace(/_\d_/, '_'+i+'_').replace(/_\d/, '_'+i));
   });
-  $('#page_images li input:hidden').each(function(i, input){
+  $('#page_images li input.caption:hidden').each(function(i, input){
     // make the image's name consistent with its position.
     parts = $(input).attr('name').split(']');
     parts[1] = ('[' + i);
