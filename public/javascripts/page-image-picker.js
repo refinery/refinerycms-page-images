@@ -17,23 +17,23 @@ $(document).ready(function(){
       });
     }
   });
-  
+
   // Webkit browsers don't like the textarea being moved around the DOM,
   // they ignore the new contents. This is fixed below by adding a hidden
-  // field that statys in place.
+  // field that stays in place.
   $('#content #page_images li textarea:hidden').each(function(index) {
     var old_name = $(this).attr('name');
     $(this).attr('data-old-id', $(this).attr('id'));
     $(this).attr('name', 'ignore_me_' + index);
     $(this).attr('id', 'ignore_me_' + index);
-    
+
     var hidden = $('<input>')
                   .addClass('caption')
                   .attr('type', 'hidden')
                   .attr('name', old_name)
                   .attr('id', $(this).attr('data-old-id'))
                   .val($(this).val());
-    
+
     $(this).parents('li').first().append(hidden);
   });
 
@@ -134,7 +134,7 @@ open_image_caption = function(e) {
         $('li.current_caption_list_item').removeClass('current_caption_list_item');
 
         $('.ui-dialog, .ui-widget-overlay:visible').remove();
-        
+
         $('#' + $(this).attr('data-old-id')).val($(this).val());
       }, textarea)
     , false);
