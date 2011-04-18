@@ -34,7 +34,7 @@ $(document).ready(function(){
                   .attr('id', $(this).attr('data-old-id'))
                   .val($(this).val());
     
-    $(this).parents('li[id*=image_]').append(hidden);
+    $(this).parents('li').first().append(hidden);
   });
 
   reset_functionality();
@@ -60,7 +60,7 @@ reset_functionality = function() {
         img_delete = $("<img src='/images/refinery/icons/delete.png' width='16' height='16' />");
         img_delete.appendTo(image_actions);
         img_delete.click(function() {
-          $(this).parents('li[id*=image_]').remove();
+          $(this).parents('li').first().remove();
           reindex_images();
         });
 
@@ -103,7 +103,7 @@ image_added = function(image) {
 
 open_image_caption = function(e) {
   // move the textarea out of the list item, and then move the textarea back into it when we click done.
-  (list_item = $(this).parents('li[id*=image_]')).addClass('current_caption_list_item');
+  (list_item = $(this).parents('li').first()).addClass('current_caption_list_item');
   textarea = list_item.find('.textarea_wrapper_for_wym > textarea');
 
   textarea.after($("<div class='form-actions'><div class='form-actions-left'><a class='button'>Done</a></div></div>"));
