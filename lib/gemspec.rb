@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-version = '1.0.3'
+version = '1.0.4'
 raise "Could not get version so gemspec can not be built" if version.nil?
 files = (Dir.glob("*") | Dir.glob("**/*")).reject{|f| f =~ %r{.gem(spec)?$}}
 
@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
   s.authors           = ['Resolve Digital', 'David Jones', 'Philip Arndt']
   s.require_paths     = %w(lib)
 
-  s.add_dependency    'refinerycms', '>= 0.9.9'
+  s.add_dependency    'refinerycms-pages', '>= 0.9.9.1'
 
   s.files             = [
     '#{files.join("',\n    '")}'
