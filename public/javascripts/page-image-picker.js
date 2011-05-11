@@ -87,7 +87,7 @@ reset_functionality = function() {
 image_added = function(image) {
   new_list_item = (current_list_item = $('li.empty')).clone();
   image_id = $(image).attr('id').replace('image_', '');
-  current_list_item.find('input:hidden').val(image_id);
+  current_list_item.find('input:hidden:first').val(image_id);
 
   $("<img />").attr({
     title: $(image).attr('title')
@@ -153,22 +153,15 @@ reindex_images = function() {
     $(input).attr('id', $(input).attr('id').replace(/_\d/, '_' + i));
     $(input).attr('data-old-id', $(input).attr('data-old-id').replace(/_\d_/, '_'+i+'_').replace(/_\d/, '_' + i));
   });
-  $('#page_images li input:hidden:not(.caption)').each(function(i, input){
-    // make the image's name consistent with its position.
-    parts = $(input).attr('name').split(']');
-    parts[1] = ('[' + i);
-    $(input).attr('name', parts.join(']'));
+  $('#page_images li').each(function(i, li){
+    $('input:hidden', li).each(function() {
+      // make the image's name consistent with its position.
+      parts = $(this).attr('name').split(']');
+      parts[1] = ('[' + i);
+      $(this).attr('name', parts.join(']'));
 
-    // make the image's id consistent with its position.
-    $(input).attr('id', $(input).attr('id').replace(/_\d_/, '_'+i+'_').replace(/_\d/, '_'+i));
-  });
-  $('#page_images li input.caption:hidden').each(function(i, input){
-    // make the image's name consistent with its position.
-    parts = $(input).attr('name').split(']');
-    parts[1] = ('[' + i);
-    $(input).attr('name', parts.join(']'));
-
-    // make the image's id consistent with its position.
-    $(input).attr('id', $(input).attr('id').replace(/_\d_/, '_'+i+'_').replace(/_\d/, '_'+i));
+      // make the image's id consistent with its position.
+      $(this).attr('id', $(this).attr('id').replace(/_\d_/, '_'+i+'_').replace(/_\d/, '_'+i));
+    });
   });
 }
