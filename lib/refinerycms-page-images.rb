@@ -7,10 +7,11 @@ module Refinery
         app.middleware.insert_after ::ActionDispatch::Static, ::ActionDispatch::Static, "#{root}/public"
       end
 
-      config.to_prepare do
+      refinery.after_inclusion do
         Page.send :has_many_page_images
 
-        BlogPost
+        BlogPost rescue NameError #this is the ugliest thing ever. Need to reference BlogPost so it autoloads and then we check for it
+        
         if defined?(BlogPost)
           BlogPost.send :has_many_page_images 
         end
