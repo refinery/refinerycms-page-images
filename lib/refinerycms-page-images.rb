@@ -8,16 +8,56 @@ module Refinery
       end
 
       config.to_prepare do
-        Page.module_eval do
-          has_many :image_pages, :order => 'position ASC'
+        Page.send :has_many_page_images
+
+        BlogPost
+        if defined?(BlogPost)
+          BlogPost.send :has_many_page_images 
+        end
+      end
+      
+      def self.register(tab)
+        tab.name = "images"
+        tab.partial = "/admin/pages/tabs/images"
+      end
+
+      config.after_initialize do
+        ::Refinery::Pages::Tab.register do |tab|
+          register tab
+        end
+        
+        if defined?(::Refinery::Blog::Tab)
+          ::Refinery::Blog::Tab.register do |tab|
+            register tab
+          end
+        end
+        
+        ::Refinery::Plugin.register do |plugin|
+          plugin.name = "page_images"
+          plugin.hide_from_menu = true
+        end
+      end
+    end
+  end
+end
+module Refinery
+  module PageImages
+    module Extension
+      
+      def self.included(base)
+        base.extend(ClassMethods)
+      end
+      
+      module ClassMethods
+        def has_many_page_images
+          has_many :image_pages, :as => :page, :order => 'position ASC'
           has_many :images, :through => :image_pages, :order => 'position ASC'
           # accepts_nested_attributes_for MUST come before def images_attributes=
           # this is because images_attributes= overrides accepts_nested_attributes_for.
+          
           accepts_nested_attributes_for :images, :allow_destroy => false
-
-          attr_accessible :images_attributes
-
-          def images_attributes=(data)
+          module_eval do ## need to do it this way because of the way accepts_nested_attributes_for deletes an already defined images_attributes
+            def images_attributes=(data)
             ids_to_delete = data.map{|i, d| d['image_page_id']}.compact
             self.image_pages.each do |image_page|
               if ids_to_delete.index(image_page.id.to_s).nil?
@@ -45,28 +85,26 @@ module Refinery
               end
             end
           end
-
-          def caption_for_image_index(index)
-            self.image_pages[index].try(:caption).presence || ""
           end
+    
+          include Refinery::PageImages::Extension::InstanceMethods
           
-          def image_page_id_for_image_index(index)
-            self.image_pages[index].try(:id)
-          end
+          attr_accessible :images_attributes
         end
       end
-
-      config.after_initialize do
-        ::Refinery::Pages::Tab.register do |tab|
-          tab.name = "images"
-          tab.partial = "/admin/pages/tabs/images"
+      
+      module InstanceMethods
+      
+        def caption_for_image_index(index)
+          self.image_pages[index].try(:caption).presence || ""
         end
-        ::Refinery::Plugin.register do |plugin|
-          plugin.name = "page_images"
-          plugin.hide_from_menu = true
+        
+        def image_page_id_for_image_index(index)
+          self.image_pages[index].try(:id)
         end
       end
     end
   end
 end
 
+ActiveRecord::Base.send(:include, Refinery::PageImages::Extension)

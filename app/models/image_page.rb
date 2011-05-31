@@ -1,7 +1,7 @@
 class ImagePage < ActiveRecord::Base
   
   belongs_to :image
-  belongs_to :page
+  belongs_to :page, :polymorphic => true
 
   translates :caption if self.respond_to?(:translates)
 
