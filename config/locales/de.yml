@@ -1,0 +1,10 @@
+de:
+  plugins:
+    page_images:
+      title: Das Seitenbilder-Plugin erlaubt dir ein oder mehrere Bilder einer Seite zuzuordnen. Damit ist es möglich Bildergalerien in der Frontendansicht darzustellen.
+  admin:
+    pages:
+      tabs:
+        images_bar:
+          add: Bild hinzufügen
+
