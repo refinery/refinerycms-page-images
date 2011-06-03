@@ -1,4 +1,9 @@
 en:
+  js:
+    admin:
+      page_images:
+        add_caption: Add Caption
+        done: Done
   plugins:
     page_images:
       title: Page Images
