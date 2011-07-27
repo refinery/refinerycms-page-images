@@ -90,7 +90,12 @@ module Refinery
     
           include Refinery::PageImages::Extension::InstanceMethods
           
-          attr_accessible :images_attributes
+          if ActiveModel::MassAssignmentSecurity::WhiteList === active_authorizer
+            attr_accessible :images_attributes
+          else
+            #to prevent a future call to attr_accessible
+            self._accessible_attributes = accessible_attributes + [:images_attributes]
+          end
         end
       end
       
