@@ -1,0 +1,15 @@
+cs:
+  js:
+    admin:
+      page_images:
+        add_caption: Přidat titulek
+        done: Hotovo
+  plugins:
+    page_images:
+      title: Obrázky stránek
+      description: Obrázky stránek vám dovoli připojit jeden či více obrázků ke stránce v Refinery. Umožní tak jednoduše vytvářet například galerie s lightboxem na frontendu.
+  admin:
+    pages:
+      tabs:
+        images_bar:
+          add: Přidat obrázek
