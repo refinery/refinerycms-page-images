@@ -1,0 +1,15 @@
+﻿sk:
+  js:
+    admin:
+      page_images:
+        add_caption: Pridať titulok
+        done: Hotovo
+  plugins:
+    page_images:
+      title: Obrázky stránok
+      description: Obrázky stránok vám umožnia pridať jeden alebo viac obrázkov k stránke v Refinery. Umožnia vám tak jednoducho vytvárať napríklad galérie v spojení s lightboxom.
+  admin:
+    pages:
+      tabs:
+        images_bar:
+          add: Pridať obrázok
