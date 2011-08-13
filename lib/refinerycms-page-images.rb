@@ -1,4 +1,4 @@
-require 'refinery'
+require File.expand_path("../generators/page_images_generator", __FILE__)
 
 module Refinery
   module PageImages
