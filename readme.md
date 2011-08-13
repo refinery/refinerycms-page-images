@@ -28,18 +28,6 @@ Next run
 
 Now when you start up your Refinery application, edit a page and there should be a new "Images" tab.
 
-If you get an error like
-
-    uninitialized constant Refinery::Pages::Tab
-
-It means your Refinery version isn't new enough. To fix that you need to update the Refinery CMS `Gemfile` line to this
-
-    gem 'refinerycms', '~> 2.0.0'
-
-Then run:
-
-    bundle install
-
 ## Enable Captions
 
 Change the setting "Page Images Captions" to "true" to enable captions.
