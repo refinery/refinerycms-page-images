@@ -108,13 +108,13 @@ open_image_caption = function(e) {
 
   textarea.after($("<div class='form-actions'><div class='form-actions-left'><a class='button'>"+I18n.t('refinery.js.admin.page_images.done')+"</a></div></div>"));
   textarea.parent().dialog({
-             title: I18n.t('refinery.js.admin.page_images.add_caption')
-             , modal: true
-             , resizable: false
-             , autoOpen: true
-             , width: 928
-             , height: 530
-           });
+     title: I18n.t('refinery.js.admin.page_images.add_caption')
+     , modal: true
+     , resizable: false
+     , autoOpen: true
+     , width: 928
+     , height: 530
+   });
 
   $('.ui-dialog:visible .ui-dialog-titlebar-close, .ui-dialog:visible .form-actions a.button')
     .bind('click',
