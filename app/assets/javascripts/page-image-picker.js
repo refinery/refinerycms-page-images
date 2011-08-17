@@ -57,7 +57,7 @@ reset_functionality = function() {
     if (e.type == 'mouseenter' || e.type == 'mouseover') {
       if ((image_actions = $(this).find('.image_actions')).length == 0) {
         image_actions = $("<div class='image_actions'></div>");
-        img_delete = $("<img src='/images/refinery/icons/delete.png' width='16' height='16' />");
+        img_delete = $("<img src='/assets/refinery/icons/delete.png' width='16' height='16' />");
         img_delete.appendTo(image_actions);
         img_delete.click(function() {
           $(this).parents('li').first().remove();
@@ -65,7 +65,7 @@ reset_functionality = function() {
         });
 
         if ($(this).find('textarea.page_caption').length > 0) {
-          img_caption = $("<img src='/images/refinery/icons/user_comment.png' width='16' height='16' class='caption' />");
+          img_caption = $("<img src='/assets/refinery/icons/user_comment.png' width='16' height='16' class='caption' />");
           img_caption.appendTo(image_actions);
           img_caption.click(open_image_caption);
         } else {
