@@ -2,7 +2,7 @@ Gem::Specification.new do |s|
   s.name              = %q{refinerycms-page-images}
   s.version           = %q{2.0.0}
   s.description       = %q{Page Images Engine for Refinery CMS}
-  s.date              = %q{2011-08-13}
+  s.date              = %q{2011-09-27}
   s.summary           = %q{Page Images Engine for Refinery CMS}
   s.email             = %q{dave@resolvedigital.com}
   s.homepage          = %q{http://github.com/resolve/refinerycms-page-images}
@@ -20,9 +20,11 @@ Gem::Specification.new do |s|
     'spec',
     'app/assets',
     'app/assets/javascripts',
-    'app/assets/javascripts/page-image-picker.js',
+    'app/assets/javascripts/refinery',
+    'app/assets/javascripts/refinery/page-image-picker.js',
     'app/assets/stylesheets',
-    'app/assets/stylesheets/page-image-picker.css.scss',
+    'app/assets/stylesheets/refinery',
+    'app/assets/stylesheets/refinery/page-image-picker.css.scss',
     'app/models',
     'app/models/refinery',
     'app/models/refinery/image_page.rb',
