@@ -12,9 +12,10 @@ module Refinery
 
       config.to_prepare do
         require 'refinerycms-pages'
-      end
-      config.after_initialize do
         ::Refinery::Page.send :has_many_page_images
+      end
+      
+      config.after_initialize do
         ::Refinery::Pages::Tab.register do |tab|
           register tab
         end
