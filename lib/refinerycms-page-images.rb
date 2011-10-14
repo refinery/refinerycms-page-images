@@ -5,22 +5,16 @@ module Refinery
     class Engine < Rails::Engine
       isolate_namespace Refinery
 
-      refinery.after_inclusion do
-        Page.send :has_many_page_images
-
-        BlogPost rescue NameError #this is the ugliest thing ever. Need to reference BlogPost so it autoloads and then we check for it
-
-        if defined?(BlogPost)
-          BlogPost.send :has_many_page_images 
-        end
-      end
-
       def self.register(tab)
         tab.name = "images"
         tab.partial = "/refinery/admin/pages/tabs/images"
       end
 
+      config.to_prepare do
+        require 'refinerycms-pages'
+      end
       config.after_initialize do
+        ::Refinery::Page.send :has_many_page_images
         ::Refinery::Pages::Tab.register do |tab|
           register tab
         end
