@@ -7,7 +7,7 @@ module Refinery
     translates :caption if self.respond_to?(:translates)
 
     attr_accessible :image_id, :position, :locale
-    Refinery::ImagePage::Translation.send :attr_accessible, :locale
+    self.class.translation_class.send :attr_accessible, :locale
 
   end
 end
