@@ -13,6 +13,9 @@ module Refinery
       config.to_prepare do
         require 'refinerycms-pages'
         ::Refinery::Page.send :has_many_page_images
+        ::Refinery::Image.module_eval do
+          has_many :image_pages, :dependent => :destroy
+        end
       end
       
       config.after_initialize do
