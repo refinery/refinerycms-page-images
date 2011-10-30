@@ -2,7 +2,7 @@ Gem::Specification.new do |s|
   s.name              = %q{refinerycms-page-images}
   s.version           = %q{2.0.0}
   s.description       = %q{Page Images Engine for Refinery CMS}
-  s.date              = %q{2011-09-27}
+  s.date              = %q{2011-10-31}
   s.summary           = %q{Page Images Engine for Refinery CMS}
   s.email             = %q{dave@resolvedigital.com}
   s.homepage          = %q{http://github.com/resolve/refinerycms-page-images}
@@ -53,7 +53,8 @@ Gem::Specification.new do |s|
     'db/migrate/20110527052435_change_page_to_polymorphic.rb',
     'lib/gemspec.rb',
     'lib/generators',
-    'lib/generators/page_images_generator.rb',
+    'lib/generators/refinery',
+    'lib/generators/refinery/page_images_generator.rb',
     'lib/refinerycms-page-images.rb',
     'spec/models',
     'spec/models/refinery',
