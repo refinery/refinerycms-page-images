@@ -1,6 +1,6 @@
-require File.expand_path("../generators/page_images_generator", __FILE__)
-
 module Refinery
+  autoload :PageImagesGenerator, File.expand_path('../generators/refinery/page_images_generator', __FILE__)
+
   module PageImages
     class Engine < Rails::Engine
       isolate_namespace Refinery
@@ -17,7 +17,7 @@ module Refinery
           has_many :image_pages, :dependent => :destroy
         end
       end
-      
+
       config.after_initialize do
         ::Refinery::Pages::Tab.register do |tab|
           register tab
@@ -59,7 +59,7 @@ module Refinery
                   image_page.destroy
                 end
               end
-            
+
               (0..(data.length-1)).each do |i|
                 unless (image_data = data[i.to_s]).nil? or image_data['id'].blank?
                   image_page = if image_data['image_page_id'].present?
