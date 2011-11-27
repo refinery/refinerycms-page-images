@@ -1,0 +1,15 @@
+es:
+  js:
+    admin:
+      page_images:
+        add_caption: Añadir Descripción
+        done: Hecho
+  plugins:
+    page_images:
+      title: Imágenes de la Página
+      description: "Imágenes de la Página te permite relacionar una o más imágenes con cualquiera de tus páginas en Refinery, haciendo que crear galerías de imágenes sea realmente sencillo."
+  admin:
+    pages:
+      tabs:
+        images_bar:
+          add: Añadir Imagen
