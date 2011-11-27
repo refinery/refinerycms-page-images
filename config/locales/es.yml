@@ -7,7 +7,7 @@ es:
   plugins:
     page_images:
       title: Imágenes de la Página
-      description: "Imágenes de la Páginate permite relacionar una o más imagenes con cualquiera de tus páginas en Refinery, haciendo que crear galerías de imágenes sea realmente sencillo."
+      description: "Imágenes de la Página te permite relacionar una o más imágenes con cualquiera de tus páginas en Refinery, haciendo que crear galerías de imágenes sea realmente sencillo."
   admin:
     pages:
       tabs:
