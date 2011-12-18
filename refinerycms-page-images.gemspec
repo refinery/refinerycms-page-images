@@ -2,7 +2,7 @@ Gem::Specification.new do |s|
   s.name              = %q{refinerycms-page-images}
   s.version           = %q{2.0.0}
   s.description       = %q{Page Images Engine for Refinery CMS}
-  s.date              = %q{2011-10-31}
+  s.date              = %q{2011-12-19}
   s.summary           = %q{Page Images Engine for Refinery CMS}
   s.email             = %q{dave@resolvedigital.com}
   s.homepage          = %q{http://github.com/resolve/refinerycms-page-images}
@@ -55,6 +55,12 @@ Gem::Specification.new do |s|
     'lib/generators',
     'lib/generators/refinery',
     'lib/generators/refinery/page_images_generator.rb',
+    'lib/refinery',
+    'lib/refinery/page_images',
+    'lib/refinery/page_images/configuration.rb',
+    'lib/refinery/page_images/engine.rb',
+    'lib/refinery/page_images/extension.rb',
+    'lib/refinery/page_images.rb',
     'lib/refinerycms-page-images.rb',
     'spec/models',
     'spec/models/refinery',

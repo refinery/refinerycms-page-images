@@ -30,7 +30,11 @@ Now when you start up your Refinery application, edit a page and there should be
 
 ## Enable Captions
 
-Change the setting "Page Images Captions" to "true" to enable captions.
+You can enable captions using an initialiser containing the following configuration:
+
+```ruby
+Refinery::PageImages.config.captions = true
+```
 
 ## Usage
 
