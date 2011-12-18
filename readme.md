@@ -18,13 +18,17 @@ Page Images allows you to relate one or more images to any page in Refinery whic
 
 Add this line to your applications `Gemfile`
 
-    gem 'refinerycms-page-images', '~> 2.0.0'
+```ruby
+gem 'refinerycms-page-images', '~> 2.0.0'
+```
 
 Next run
 
-    bundle install
-    rails generate refinery:page_images
-    rake db:migrate
+```bash
+bundle install
+rails generate refinery:page_images
+rake db:migrate
+```
 
 Now when you start up your Refinery application, edit a page and there should be a new "Images" tab.
 
@@ -40,16 +44,18 @@ Refinery::PageImages.config.captions = true
 
 `app/views/refinery/pages/show.html.erb`
 
-    <% content_for :body_content_right do %>
-      <ul id='gallery'>
-        <% @page.images.each do |i| %>
-          <li>
-            <%= link_to image_tag(i.thumbnail("200x200#c").url), i.thumbnail("900x600").url %>
-          </li>
-        <% end %>
-      </ul>
-    <% end %>
-    <%= render :partial => "/refinery/content_page" %>
+```erb
+<% content_for :body_content_right do %>
+  <ul id='gallery'>
+    <% @page.images.each do |i| %>
+      <li>
+        <%= link_to image_tag(i.thumbnail("200x200#c").url), i.thumbnail("900x600").url %>
+      </li>
+   <% end %>
+  </ul>
+<% end %>
+<%= render :partial => "/refinery/content_page" %>
+```
 
 ## Screenshot
 
