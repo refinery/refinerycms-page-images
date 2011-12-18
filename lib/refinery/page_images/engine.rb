@@ -2,6 +2,7 @@ module Refinery
   module PageImages
     class Engine < Rails::Engine
       isolate_namespace Refinery
+      engine_name :refinery_page_images
 
       def self.register(tab)
         tab.name = "images"
