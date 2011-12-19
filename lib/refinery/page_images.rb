@@ -13,6 +13,7 @@ module Refinery
       end
     end
 
+    require 'refinery/page_images/configuration'
     require 'refinery/page_images/engine'
     require 'refinery/page_images/extension'
   end
