@@ -10,6 +10,7 @@ Gem::Specification.new do |s|
   s.require_paths     = %w(lib)
 
   s.add_dependency    'refinerycms-pages', '~> 2.0.0'
+  s.add_development_dependency 'refinerycms-testing', '~> 2.0.0'
 
   s.files             = [
     'app',
