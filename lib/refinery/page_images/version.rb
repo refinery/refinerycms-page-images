@@ -1,5 +1,5 @@
 module Refinery
-  module Blog
+  module PageImages
     class Version
       @major = 2
       @minor = 0
