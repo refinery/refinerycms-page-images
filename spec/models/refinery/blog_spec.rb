@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 module Refinery
-  describe BlogPost do
+  describe Blog::Post do
     it "should not have images" do
       blog = Factory(:blog_post)
       blog.images.count.should == 0
@@ -12,4 +12,4 @@ module Refinery
       blog.images.count.should == 1
     end
   end 
-end if defined?(Refinery::BlogPost)
+end

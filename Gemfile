@@ -13,6 +13,8 @@ group :development, :test do
   gem 'mysql2'
   gem 'pg'
 
+  gem 'refinerycms-blog', :git => "git://github.com/resolve/refinerycms-blog.git", :branch => 'rails-3-1'
+
   platforms :mswin, :mingw do
     gem 'win32console'
     gem 'rb-fchange', '~> 0.0.5'
