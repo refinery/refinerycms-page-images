@@ -16,4 +16,6 @@ require "refinerycms-testing"
 Refinery::Testing::Railtie.load_tasks
 Refinery::Testing::Railtie.load_dummy_tasks(ENGINE_PATH)
 
-load File.expand_path('../tasks/rspec.rake', __FILE__)
+Dir[File.expand_path('../tasks/**/*', __FILE__)].each do |task|
+  load task
+end
