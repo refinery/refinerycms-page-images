@@ -70,7 +70,6 @@ Gem::Specification.new do |s|
     'spec/requests',
     'spec/requests/attach_page_images_spec.rb',
     'spec/support',
-    'spec/support/refinery',
-    'spec/support/refinery/factories.rb'
+    'spec/factories/page-images.rb'
   ]
 end
