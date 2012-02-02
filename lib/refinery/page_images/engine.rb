@@ -29,6 +29,11 @@ module Refinery
           end
         end
 
+        ::Refinery::Core.configure do |core|
+          core.register_stylesheet 'refinery/page-image-picker.css'
+          core.register_javascript 'refinery/page-image-picker.js'
+        end
+
         ::Refinery::Plugin.register do |plugin|
           plugin.name = "page_images"
           plugin.hide_from_menu = true

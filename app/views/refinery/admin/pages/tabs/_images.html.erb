@@ -2,11 +2,3 @@
   <%= render :partial => '/refinery/admin/pages/tabs/images_bar', :locals => {:f => f} %>
   <%= render :partial => '/refinery/admin/pages/tabs/images_field', :locals => {:f => f} %>
 </div>
-
-<% content_for :stylesheets do %>
-  <%= stylesheet_link_tag 'refinery/page-image-picker' %>
-<% end %>
-
-<% content_for :javascripts do %>
-  <%= javascript_include_tag 'refinery/page-image-picker' %>
-<% end %>
