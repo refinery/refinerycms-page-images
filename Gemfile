@@ -2,15 +2,29 @@ source "http://rubygems.org"
 
 gemspec
 
-## Uncomment the following lines to develop against edge refinery
-gem 'refinerycms', :git => 'git://github.com/resolve/refinerycms.git'
+git 'git://github.com/resolve/refinerycms.git' do
+  gem 'refinerycms'
+
+  group :development, :test do
+    gem 'refinerycms-testing'
+  end
+end
 
 group :development, :test do
   require 'rbconfig'
-  
-  gem 'sqlite3'
-  gem 'mysql2'
-  gem 'pg'
+
+  platforms :jruby do
+    gem 'activerecord-jdbcsqlite3-adapter'
+    gem 'activerecord-jdbcmysql-adapter'
+    gem 'activerecord-jdbcpostgresql-adapter'
+    gem 'jruby-openssl'
+  end
+
+  unless defined?(JRUBY_VERSION)
+    gem 'sqlite3'
+    gem 'mysql2'
+    gem 'pg'
+  end
 
   platforms :mswin, :mingw do
     gem 'win32console'
@@ -48,11 +62,10 @@ group :development, :test do
   end
 end
 
-# Gems used only for assets and not required
-# in production environments by default.
+# Refinery/rails should pull in the proper versions of these
 group :assets do
-  gem 'sass-rails', '~> 3.1.0'
-  gem 'coffee-rails', '~> 3.1.0'
+  gem 'sass-rails'
+  gem 'coffee-rails'
   gem 'uglifier'
 end
 
