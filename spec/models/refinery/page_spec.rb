@@ -21,7 +21,7 @@ module Refinery
         page.images.count.should == 1
       end
 
-      it "deletes images" do
+      it "deletes specific images" do
         page = Factory(:page)
         images = [Factory(:image), Factory(:image)]
         page.images = images
@@ -34,6 +34,16 @@ module Refinery
         })
 
         page.images.should eq([images.first])
+      end
+
+      it "deletes all images" do
+        page = Factory(:page)
+        images = [Factory(:image), Factory(:image)]
+        page.images = images
+
+        page.update_attributes(:images_attributes => {"0" => {"id"=>""}})
+
+        page.images.should be_empty
       end
 
       it "reorders images" do

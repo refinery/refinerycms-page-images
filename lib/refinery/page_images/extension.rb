@@ -14,9 +14,16 @@ module Refinery
         module_eval do
           def images_attributes=(data)
             ids_to_keep = data.map{|i, d| d['image_page_id']}.compact
-            self.image_pages.where(
-              Refinery::ImagePage.arel_table[:id].not_in(ids_to_keep)
-            ).destroy_all
+
+            image_pages_to_delete = if ids_to_keep.empty?
+              self.image_pages
+            else
+              self.image_pages.where(
+                Refinery::ImagePage.arel_table[:id].not_in(ids_to_keep)
+              )
+            end
+
+            image_pages_to_delete.destroy_all
 
             data.each do |i, image_data|
               image_page_id, image_id, caption =
