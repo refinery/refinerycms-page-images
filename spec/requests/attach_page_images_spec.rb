@@ -6,7 +6,7 @@ describe "attach page images" do
   before(:each) do
     Factory(:page)
 
-    visit refinery_admin_pages_path
+    visit refinery.admin_pages_path
 
     click_link "Edit this page"
   end
