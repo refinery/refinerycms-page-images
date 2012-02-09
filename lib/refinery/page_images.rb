@@ -1,5 +1,5 @@
 module Refinery
-  autoload :PageImagesGenerator, File.expand_path('../generators/refinery/page_images_generator', __FILE__)
+  autoload :PageImagesGenerator, 'generators/refinery/page_images_generator'
 
   module PageImages
 
