@@ -1,5 +1,5 @@
 module Refinery
-  class ImagePage < ActiveRecord::Base
+  class ImagePage < Refinery::Core::BaseModel
 
     belongs_to :image
     belongs_to :page, :polymorphic => true
