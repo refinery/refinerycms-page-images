@@ -106,9 +106,9 @@ open_image_caption = function(e) {
   (list_item = $(this).parents('li').first()).addClass('current_caption_list_item');
   textarea = list_item.find('.textarea_wrapper_for_wym > textarea');
 
-  textarea.after($("<div class='form-actions'><div class='form-actions-left'><a class='button'>"+I18n.t('refinery.js.admin.page_images.done')+"</a></div></div>"));
+  textarea.after($("<div class='form-actions'><div class='form-actions-left'><a class='button'><%= I18n.t('refinery.js.admin.page_images.done') %></a></div></div>"));
   textarea.parent().dialog({
-     title: I18n.t('refinery.js.admin.page_images.add_caption')
+     title: "<%= I18n.t('refinery.js.admin.page_images.add_caption') %>"
      , modal: true
      , resizable: false
      , autoOpen: true
