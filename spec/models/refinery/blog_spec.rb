@@ -12,4 +12,4 @@ module Refinery
       blog.images.count.should == 1
     end
   end 
-end if defined?(Refinery::BlogPost)
+end if defined?(Refinery::Blog::Post)

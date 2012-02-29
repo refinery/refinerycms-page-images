@@ -5,5 +5,5 @@ FactoryGirl.define do
 
   factory :blog_post_with_image, :parent => :blog_post do
     after_create { |b| b.images << Factory(:image) }
-  end if defined? Refinery::BlogPost
+  end if defined? Refinery::Blog::Post
 end
