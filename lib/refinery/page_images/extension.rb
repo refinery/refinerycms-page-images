@@ -38,7 +38,7 @@ module Refinery
               end
 
               image_page.position = i
-              image_page.caption = caption if Refinery::PageImages.config.captions
+              image_page.caption = caption if Refinery::PageImages.captions
               image_page.save
             end
           end

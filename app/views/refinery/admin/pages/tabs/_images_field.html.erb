@@ -6,7 +6,7 @@
         <%= image_fu image_form.object, '135x135#c' %>
         <% index = image_form.object_name.split('[').last.split(']').first.to_i %>
         <%= hidden_field_tag "#{f.object_name.demodulize}[images_attributes][#{index}][image_page_id]", f.object.image_page_id_for_image_index(index) %>
-        <% if Refinery::PageImages.config.captions %>
+        <% if Refinery::PageImages.captions %>
           <div class='textarea_wrapper_for_wym'>
             <%= text_area_tag "#{f.object_name.demodulize}[images_attributes][#{index}][caption]",
                               f.object.caption_for_image_index(index),
@@ -19,7 +19,7 @@
     <% end %>
     <li class='empty'>
       <%= hidden_field_tag "#{f.object_name.demodulize}[images_attributes][#{f.object.images.size}][id]" %>
-      <% if Refinery::PageImages.config.captions %>
+      <% if Refinery::PageImages.captions %>
         <div class='textarea_wrapper_for_wym'>
           <%= text_area_tag "#{f.object_name.demodulize}[images_attributes][#{f.object.images.size}][caption]",
                             '',
