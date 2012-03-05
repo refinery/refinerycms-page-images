@@ -27,7 +27,6 @@ Next run
 ```bash
 bundle install
 rails generate refinery:page_images
-bundle exec rake refinery_page_images:install:migrations
 rake db:migrate
 ```
 
