@@ -2,12 +2,10 @@ source "http://rubygems.org"
 
 gemspec
 
-git 'git://github.com/resolve/refinerycms.git' do
-  gem 'refinerycms'
+gem 'refinerycms', '~> 2.0.1'
 
-  group :development, :test do
-    gem 'refinerycms-testing'
-  end
+group :development, :test do
+  gem 'refinerycms-testing', '~> 2.0.0'
 end
 
 group :development, :test do
