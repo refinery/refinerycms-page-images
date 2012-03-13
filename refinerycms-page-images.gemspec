@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.summary           = %q{Page Images Engine for Refinery CMS}
   s.email             = %q{dave@resolvedigital.com}
   s.homepage          = %q{http://github.com/resolve/refinerycms-page-images}
-  s.authors           = ['Resolve Digital', 'David Jones', 'Philip Arndt']
+  s.authors           = ['Philip Arndt', 'David Jones']
   s.require_paths     = %w(lib)
 
   s.files             = `git ls-files`.split("\n")
