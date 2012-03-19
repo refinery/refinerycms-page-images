@@ -117,7 +117,7 @@ open_image_caption = function(e) {
    });
 
   $('.ui-dialog:visible .ui-dialog-titlebar-close, .ui-dialog:visible .form-actions a.button')
-    .bind('click',
+    .on('click',
       $.proxy(function(e) {
         // first, update the editor because we're blocking event bubbling (third argument to bind set to false).
         $(this).data('wymeditor').update();
