@@ -119,7 +119,7 @@ open_image_caption = function(e) {
   $('.ui-dialog:visible .ui-dialog-titlebar-close, .ui-dialog:visible .form-actions a.button')
     .on('click',
       $.proxy(function(e) {
-        // first, update the editor because we're blocking event bubbling (third argument to bind set to false).
+        // update the editor
         $(this).data('wymeditor').update();
         $(this).removeClass('wymeditor')
                .removeClass('active_rotator_wymeditor');
