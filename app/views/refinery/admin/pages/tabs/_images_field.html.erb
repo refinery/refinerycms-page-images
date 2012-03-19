@@ -1,0 +1,33 @@
+<div class='wym_box field images_field'>
+  <ul id='page_images' class='clearfix'>
+    <%= f.fields_for :images do |image_form| %>
+      <li id='image_<%= image_form.object.id %>'>
+        <%= image_form.hidden_field :id %>
+        <%= image_fu image_form.object, '135x135#c' %>
+        <% index = image_form.object_name.split('[').last.split(']').first.to_i %>
+        <%= hidden_field_tag "#{f.object_name.demodulize}[images_attributes][#{index}][image_page_id]", f.object.image_page_id_for_image_index(index) %>
+        <% if Refinery::PageImages.captions %>
+          <div class='textarea_wrapper_for_wym'>
+            <%= text_area_tag "#{f.object_name.demodulize}[images_attributes][#{index}][caption]",
+                              f.object.caption_for_image_index(index),
+                              :style => 'display: none',
+                              :id => "page_captions_#{index}",
+                              :class => 'page_caption' %>
+          </div>
+        <% end %>
+      </li>
+    <% end %>
+    <li class='empty'>
+      <%= hidden_field_tag "#{f.object_name.demodulize}[images_attributes][#{f.object.images.size}][id]" %>
+      <% if Refinery::PageImages.captions %>
+        <div class='textarea_wrapper_for_wym'>
+          <%= text_area_tag "#{f.object_name.demodulize}[images_attributes][#{f.object.images.size}][caption]",
+                            '',
+                            :style => 'display: none',
+                            :id => "page_captions_#{f.object.images.size}",
+                            :class => 'page_caption' %>
+        </div>
+      <% end %>
+    </li>
+  </ul>
+</div>

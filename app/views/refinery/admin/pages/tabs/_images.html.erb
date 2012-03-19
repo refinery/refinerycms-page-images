@@ -1,0 +1,7 @@
+<div class='wym_skin_refinery page_part' id='page_image_picker'>
+  <%= render '/refinery/admin/pages/tabs/images_bar', :f => f %>
+  <%= render '/refinery/admin/pages/tabs/images_field', :f => f %>
+</div>
+
+<% content_for :stylesheets, stylesheet_link_tag('refinery/page-image-picker') %>
+<% content_for :javascripts, javascript_include_tag('refinery/page-image-picker') %>

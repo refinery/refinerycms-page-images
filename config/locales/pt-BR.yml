@@ -1,15 +1,16 @@
 pt-BR:
-  js:
+  refinery:
+    plugins:
+      refinery_page_images:
+        title: Imagens da Página
+        description: Imagens da Página te permite relacionar uma ou mais imagens a qualquer página no Refinery, tornando muito simples a criação de galerias de imagem no front end com popus no estilo lightbox.
+    js:
+      admin:
+        page_images:
+          add_caption: Adicionar Legenda
+          done: Feito
     admin:
-      page_images:
-        add_caption: Adicionar Legenda
-        done: Feito
-  plugins:
-    page_images:
-      title: Imagens da Página
-      description: Imagens da Página te permite relacionar uma ou mais imagens a qualquer página no Refinery, tornando muito simples a criação de galerias de imagem no front end com popus no estilo lightbox.
-  admin:
-    pages:
-      tabs:
-        images_bar:
-          add: Adicionar Imagem
+      pages:
+        tabs:
+          images_bar:
+            add: Adicionar Imagem

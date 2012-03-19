@@ -6,7 +6,7 @@ Page Images allows you to relate one or more images to any page in Refinery whic
 
 ## Requirements
 
-* refinerycms >= 0.9.9
+* refinerycms >= 2.0.0
 
 ## Features
 
@@ -18,50 +18,44 @@ Page Images allows you to relate one or more images to any page in Refinery whic
 
 Add this line to your applications `Gemfile`
 
-    gem 'refinerycms-page-images', '~> 1.0'
+```ruby
+gem 'refinerycms-page-images', '~> 2.0.0'
+```
 
 Next run
 
-    bundle install
-    rails g refinerycms_page_images
-    rake db:migrate
+```bash
+bundle install
+rails generate refinery:page_images
+rake db:migrate
+```
 
 Now when you start up your Refinery application, edit a page and there should be a new "Images" tab.
 
-If you get an error like
-
-    uninitialized constant Refinery::Pages::Tab
-
-It means your Refinery version isn't new enough. To fix that you need to update the Refinery CMS `Gemfile` line to this
-
-    gem 'refinerycms', '~> 0.9.9'
-
-Then run:
-
-    bundle install
-    rake refinery:update
-
-And then try again. Note that doing this will likely mean that you need to fix your application
-for any changes that have happened since the version of Refinery CMS that you were using.
-
 ## Enable Captions
 
-Change the setting "Page Images Captions" to "true" to enable captions.
+You can enable captions using an initializer containing the following configuration:
+
+```ruby
+Refinery::PageImages.captions = true
+```
 
 ## Usage
 
-`app/views/pages/show.html.erb`
+`app/views/refinery/pages/show.html.erb`
 
-    <% content_for :body_content_right do %>
-      <ul id='gallery'>
-        <% @page.images.each do |i| %>
-          <li>
-            <%= link_to image_tag(i.thumbnail("200x200#c").url), i.thumbnail("900x600").url %>
-          </li>
-        <% end %>
-      </ul>
-    <% end %>
-    <%= render :partial => "/shared/content_page" %>
+```erb
+<% content_for :body_content_right do %>
+  <ul id='gallery'>
+    <% @page.images.each do |i| %>
+      <li>
+        <%= link_to image_tag(i.thumbnail("200x200#c").url), i.thumbnail("900x600").url %>
+      </li>
+   <% end %>
+  </ul>
+<% end %>
+<%= render :partial => "/refinery/content_page" %>
+```
 
 ## Screenshot
 

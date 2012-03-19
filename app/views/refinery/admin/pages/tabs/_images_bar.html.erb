@@ -1,0 +1,9 @@
+<div class='wym_area_top'>
+  <span class='clearfix label_inline_with_link'>
+    <%= link_to t('.add'), refinery.insert_admin_images_path({
+                  :dialog => true, :width => 950, :height => 510,
+                  :callback => "image_added"
+                }),
+                :id => "add_image_link" %>
+  </span>
+</div>
