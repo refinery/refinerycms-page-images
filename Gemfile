@@ -2,14 +2,11 @@ source "http://rubygems.org"
 
 gemspec
 
-gem 'refinerycms', '~> 2.0.1'
+gem 'refinerycms', :git => 'git://github.com/resolve/refinerycms.git'
 
 group :development, :test do
-  gem 'refinerycms-testing', '~> 2.0.0'
-end
-
-group :development, :test do
-  require 'rbconfig'
+  gem 'refinerycms-testing', :git => 'git://github.com/resolve/refinerycms.git'
+  gem 'guard-rspec', '~> 0.6.0'
 
   platforms :jruby do
     gem 'activerecord-jdbcsqlite3-adapter'
@@ -31,13 +28,14 @@ group :development, :test do
   end
 
   platforms :ruby do
-    gem 'spork', '0.9.0.rc9'
+    gem 'spork', '~> 0.9.0.rc'
     gem 'guard-spork'
 
     unless ENV['TRAVIS']
+      require 'rbconfig'
       if RbConfig::CONFIG['target_os'] =~ /darwin/i
         gem 'rb-fsevent', '>= 0.3.9'
-        gem 'growl',      '~> 1.0.3'
+        gem 'ruby_gntp'
       end
       if RbConfig::CONFIG['target_os'] =~ /linux/i
         gem 'rb-inotify', '>= 0.5.1'
@@ -49,8 +47,9 @@ group :development, :test do
 
   platforms :jruby do
     unless ENV['TRAVIS']
+      require 'rbconfig'
       if RbConfig::CONFIG['target_os'] =~ /darwin/i
-        gem 'growl',      '~> 1.0.3'
+        gem 'ruby_gntp'
       end
       if RbConfig::CONFIG['target_os'] =~ /linux/i
         gem 'rb-inotify', '>= 0.5.1'

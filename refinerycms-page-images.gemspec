@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name              = %q{refinerycms-page-images}
-  s.version           = %q{2.0.1}
+  s.version           = %q{2.1.0.dev}
   s.description       = %q{Page Images Engine for Refinery CMS}
   s.date              = Date.today.strftime("%Y-%m-%d")
   s.summary           = %q{Page Images Engine for Refinery CMS}
@@ -12,6 +12,5 @@ Gem::Specification.new do |s|
   s.files             = `git ls-files`.split("\n")
   s.test_files        = `git ls-files -- spec/*`.split("\n")
 
-  s.add_dependency    'refinerycms-pages', '~> 2.0.0'
-  s.add_development_dependency 'refinerycms-testing', '~> 2.0.0'
+  s.add_dependency    'refinerycms-pages', '~> 2.1.0.dev'
 end
