@@ -44,6 +44,12 @@ Refinery::PageImages.captions = true
 
 `app/views/refinery/pages/show.html.erb`
 
+If you don't have this file then Refinery will be using its default. You can override this with
+
+```bash
+rake refinery:override view=refinery/pages/show
+```
+
 ```erb
 <% content_for :body_content_right do %>
   <ul id='gallery'>
