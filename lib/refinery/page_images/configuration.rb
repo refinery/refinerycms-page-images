@@ -8,8 +8,8 @@ module Refinery
 
     self.captions = false
     self.attach_to = [
-    	{:engine => 'Refinery::Page', 			:tab => 'Refinery::Page'},
-    	{:engine => 'Refinery::Blog::Post', 	:tab => 'Refinery::Blog'}
+    	{:engine => 'Refinery::Page', 			:tab => 'Refinery::Pages::Tab'},
+    	{:engine => 'Refinery::Blog::Post', 	:tab => 'Refinery::Blog::Tab'}
     ]
   end
 end

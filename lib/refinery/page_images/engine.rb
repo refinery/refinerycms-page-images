@@ -20,25 +20,25 @@ module Refinery
       end
 
       config.to_prepare do
-      	Refinery::PageImages.attach_to.each do |a|
-      		send("#{a[:engine]}", :has_many_page_images) if defined?(::"#{a[:engine]}")
-		end
+        Refinery::PageImages.attach_to.each do |a|
+          e = a[:engine]
+          e.constantize.send(:has_many_page_images) if defined?(e.constantize)
+        end
         Refinery::Image.module_eval do
           has_many :image_pages, :dependent => :destroy
         end
       end
 
       config.after_initialize do
-        Refinery::Pages::Tab.register do |tab|
-          register tab
-        end
-
-        if defined?(Refinery::Blog::Tab)
-          Refinery::Blog::Tab.register do |tab|
-            register tab
+        Refinery::PageImages.attach_to.each do |a|
+          t = a[:tab]
+          if defined?(t.constantize)
+            t.constantize.register do |tab|
+              register tab
+            end
           end
         end
-
+        
         Refinery.register_engine(Refinery::PageImages)
       end
     end
