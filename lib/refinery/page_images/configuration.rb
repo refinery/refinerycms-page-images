@@ -4,7 +4,6 @@ module Refinery
 
     config_accessor :captions
     config_accessor :attach_to
-    config_accessor :tab_locations
 
     self.captions = false
     self.attach_to = [
