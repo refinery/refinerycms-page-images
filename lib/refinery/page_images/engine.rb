@@ -20,9 +20,9 @@ module Refinery
       end
 
       config.to_prepare do
-        require 'refinerycms-pages'
-        Refinery::Page.send :has_many_page_images
-        Refinery::Blog::Post.send :has_many_page_images if defined?(::Refinery::Blog)
+      	Refinery::PageImages.attach_to.each do |a|
+      		send("#{a[:engine]}", :has_many_page_images) if defined?(::"#{a[:engine]}")
+		end
         Refinery::Image.module_eval do
           has_many :image_pages, :dependent => :destroy
         end
