@@ -21,10 +21,10 @@ module Refinery
 
       config.to_prepare do
         Refinery::PageImages.attach_to.each do |a|
-          if Object.const_defined?(a[:engine]) then
+          #if Object.qualified_const_defined?(a[:engine]) then
             engine = a[:engine].constantize
             engine.send(:has_many_page_images)
-          end 
+          #end 
         end
         Refinery::Image.module_eval do
           has_many :image_pages, :dependent => :destroy
@@ -33,13 +33,11 @@ module Refinery
 
       config.after_initialize do
         Refinery::PageImages.attach_to.each do |a|
-          if Object.const_defined?(a[:tab]) then
-            admin_tab = a[:tab].constantize
+          admin_tab = a[:tab].constantize
+          if defined?(admin_tab)
             admin_tab.register do |tab|
               register tab
             end
-          else 
-          	# raise exception, no Tab
           end
         end
         
