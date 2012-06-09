@@ -53,9 +53,25 @@ rake refinery:override view=refinery/pages/show
 ```erb
 <% content_for :body_content_right do %>
   <ul id='gallery'>
-    <% @page.images.each do |i| %>
+    <% @page.images.each do |image| %>
       <li>
-        <%= link_to image_tag(i.thumbnail("200x200#c").url), i.thumbnail("900x600").url %>
+        <%= link_to image_tag(image.thumbnail("200x200#c").url), image.thumbnail("900x600").url %>
+      </li>
+   <% end %>
+  </ul>
+<% end %>
+<%= render :partial => "/refinery/content_page" %>
+```
+
+If you have enabled captions, you can show them like this
+
+```erb
+<% content_for :body_content_right do %>
+  <ul id='gallery'>
+    <% @page.images.each_with_index do |image, i| %>
+      <li>
+        <%= link_to image_tag(image.thumbnail("200x200#c").url), image.thumbnail("900x600").url %>
+        <span class='caption'><%= @page.caption_for_image_index(i) %></span>
       </li>
    <% end %>
   </ul>
