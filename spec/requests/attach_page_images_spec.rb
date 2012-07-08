@@ -1,7 +1,7 @@
 require "spec_helper"
 
 describe "attach page images" do
-  login_refinery_user
+  refinery_login_with :refinery_user
 
   before(:each) do
     Factory(:page)
