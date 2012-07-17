@@ -71,7 +71,7 @@ If you have enabled captions, you can show them like this
     <% @page.images.each_with_index do |image, i| %>
       <li>
         <%= link_to image_tag(image.thumbnail("200x200#c").url), image.thumbnail("900x600").url %>
-        <span class='caption'><%= @page.caption_for_image_index(i) %></span>
+        <span class='caption'><%=raw @page.caption_for_image_index(i) %></span>
       </li>
    <% end %>
   </ul>
