@@ -68,10 +68,10 @@ If you have enabled captions, you can show them like this
 ```erb
 <% content_for :body_content_right do %>
   <ul id='gallery'>
-    <% @page.images.each_with_index do |image, i| %>
+    <% @page.images.each_with_index do |image, index| %>
       <li>
         <%= link_to image_tag(image.thumbnail("200x200#c").url), image.thumbnail("900x600").url %>
-        <span class='caption'><%=raw @page.caption_for_image_index(i) %></span>
+        <span class='caption'><%=raw @page.caption_for_image_index(index) %></span>
       </li>
    <% end %>
   </ul>
