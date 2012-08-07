@@ -5,7 +5,7 @@ class TranslatePageImageCaptions < ActiveRecord::Migration
     ::ImagePage.reset_column_information
     unless defined?(::ImagePage::Translation) && ::ImagePage::Translation.table_exists?
       ::ImagePage.create_translation_table!({
-        :caption => :string
+        :caption => :text
       }, {
         :migrate_data => true
       })
