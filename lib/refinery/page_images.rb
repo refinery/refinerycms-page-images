@@ -13,10 +13,16 @@ module Refinery
       def factory_paths
         @factory_paths ||= [ root.join('spec', 'factories').to_s ]
       end
+
+      def attach!
+        require 'refinery/page'
+        require 'refinery/page_images/extension'
+        Refinery::Page.send :has_many_page_images
+        Refinery::Blog::Post.send :has_many_page_images if defined?(::Refinery::Blog)
+        Refinery::Image.send :has_many, :image_pages, :dependent => :destroy
+      end
     end
 
-    require 'refinery/page_images/configuration'
     require 'refinery/page_images/engine'
-    require 'refinery/page_images/extension'
   end
 end

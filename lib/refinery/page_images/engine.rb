@@ -1,3 +1,5 @@
+require 'refinery/page_images/configuration'
+
 module Refinery
   module PageImages
     class Engine < Rails::Engine
@@ -19,12 +21,9 @@ module Refinery
         end
       end
 
-      config.to_prepare do
-        require 'refinerycms-pages'
-        Refinery::Page.send :has_many_page_images
-        Refinery::Blog::Post.send :has_many_page_images if defined?(::Refinery::Blog)
-        Refinery::Image.module_eval do
-          has_many :image_pages, :dependent => :destroy
+      initializer "refinery.page_images.attach" do
+        ActiveSupport.on_load(:active_record) do
+          Refinery::PageImages.attach!
         end
       end
 
@@ -39,7 +38,7 @@ module Refinery
           end
         end
 
-        Refinery.register_engine(Refinery::PageImages)
+        Refinery.register_engine Refinery::PageImages
       end
     end
   end
