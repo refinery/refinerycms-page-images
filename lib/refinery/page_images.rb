@@ -17,8 +17,15 @@ module Refinery
       def attach!
         require 'refinery/page'
         require 'refinery/page_images/extension'
-        Refinery::Page.send :has_many_page_images
-        Refinery::Blog::Post.send :has_many_page_images if defined?(::Refinery::Blog)
+
+        if config.enable_for.include?('Refinery::Pages')
+          Refinery::Page.send :has_many_page_images
+        end
+
+        if config.enable_for.include?('Refinery::Blog') && defined?(Refinery::Blog::Post)
+          Refinery::Blog::Post.send :has_many_page_images
+        end
+
         Refinery::Image.send :has_many, :image_pages, :dependent => :destroy
       end
     end

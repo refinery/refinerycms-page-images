@@ -28,14 +28,12 @@ module Refinery
       end
 
       config.after_initialize do
-        Refinery::Pages::Tab.register do |tab|
-          register tab
-        end
+        if PageImages.config.enable_for.include?('Refinery::Pages')
+          Refinery::Pages::Tab.register { |tab| register tab }
+       end
 
-        if defined?(Refinery::Blog::Tab)
-          Refinery::Blog::Tab.register do |tab|
-            register tab
-          end
+        if PageImages.config.enable_for.include?('Refinery::Blog') && defined?(Refinery::Blog::Tab)
+          Refinery::Blog::Tab.register { |tab| register tab }
         end
 
         Refinery.register_engine Refinery::PageImages
