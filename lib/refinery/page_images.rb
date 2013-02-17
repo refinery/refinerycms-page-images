@@ -18,12 +18,12 @@ module Refinery
         require 'refinery/page'
         require 'refinery/page_images/extension'
 
-        if config.enable_for.include?('Refinery::Pages')
-          Refinery::Page.send :has_many_page_images
-        end
-
-        if config.enable_for.include?('Refinery::Blog') && defined?(Refinery::Blog::Post)
-          Refinery::Blog::Post.send :has_many_page_images
+        config.enabled_models.each do |model_class_name|
+          unless (model_class = model_class_name.safe_constantize)
+            Rails.logger.warn "PageImages is unable to find model class: #{model_class_name}"
+            next
+          end
+          model_class.send :has_many_page_images
         end
 
         Refinery::Image.send :has_many, :image_pages, :dependent => :destroy
