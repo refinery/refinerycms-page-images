@@ -27,10 +27,7 @@ describe Refinery::PageImages::Engine do
 
       Refinery::PageImages::EnableForMock::Model.should_receive(:has_many_page_images).once
       Refinery::Page.should_not_receive(:has_many_page_images)
-      attach_initializer = Refinery::PageImages::Engine.initializers.find do |initializer|
-        initializer.name == "refinery.page_images.attach"
-      end
-      attach_initializer.run(Rails.application)
+      ActionDispatch::Reloader.prepare!
     end
   end
 

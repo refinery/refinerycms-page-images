@@ -31,10 +31,8 @@ module Refinery
         end
       end
 
-      initializer "refinery.page_images.attach" do
-        ActiveSupport.on_load(:active_record) do
-          Refinery::PageImages.attach!
-        end
+      config.to_prepare do
+        Refinery::PageImages.attach!
       end
 
       config.after_initialize do
