@@ -54,8 +54,8 @@ reset_functionality = function() {
     , stop: reindex_images
   });
 
-  $('#page_images li:not(.empty)').live('hover', function(e) {
-    if (e.type == 'mouseenter' || e.type == 'mouseover') {
+  $('#page_images').on('mouseenter mouseleave', 'li:not(.empty)', function(e) {
+    if (e.type == 'mouseenter') {
       if ((image_actions = $(this).find('.image_actions')).length == 0) {
         image_actions = $("<div class='image_actions'></div>");
         img_delete = $("<img src='/assets/refinery/icons/delete.png' width='16' height='16' />");
@@ -77,7 +77,7 @@ reset_functionality = function() {
       }
 
       image_actions.show();
-    } else if (e.type == 'mouseleave' || e.type == 'mouseout') {
+    } else if (e.type == 'mouseleave') {
       $(this).find('.image_actions').hide();
     }
   });
