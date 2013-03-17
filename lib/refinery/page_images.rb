@@ -17,8 +17,15 @@ module Refinery
       def attach!
         require 'refinery/page'
         require 'refinery/page_images/extension'
-        Refinery::Page.send :has_many_page_images
-        Refinery::Blog::Post.send :has_many_page_images if defined?(::Refinery::Blog)
+
+        config.enabled_models.each do |model_class_name|
+          unless (model_class = model_class_name.safe_constantize)
+            Rails.logger.warn "PageImages is unable to find model class: #{model_class_name}"
+            next
+          end
+          model_class.send :has_many_page_images
+        end
+
         Refinery::Image.send :has_many, :image_pages, :dependent => :destroy
       end
     end

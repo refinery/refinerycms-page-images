@@ -26,10 +26,13 @@ module Refinery
         images = [Factory(:image), Factory(:image)]
         page.images = images
 
+        page_image_to_keep = page.image_pages.find do |image_page|
+          image_page.image_id == images.first.id
+        end
         page.update_attributes(:images_attributes => {
           "0" => {
-            "id" => images.first.id.to_s,
-            "image_page_id" => page.image_pages.first.id,
+            "id" => page_image_to_keep.image_id.to_s,
+            "image_page_id" => page_image_to_keep.id
           },
         })
 
@@ -51,14 +54,21 @@ module Refinery
         images = [Factory(:image), Factory(:image)]
         page.images = images
 
+        first_page_image = page.image_pages.find do |image_page|
+          image_page.image_id == images.first.id
+        end
+        second_page_image = page.image_pages.find do |image_page|
+          image_page.image_id == images.second.id
+        end
+
         page.update_attributes(:images_attributes => {
           "0" => {
-            "id" => images.second.id,
-            "image_page_id" => page.image_pages.second.id,
+            "id" => second_page_image.image_id,
+            "image_page_id" => second_page_image.id,
           },
           "1" => {
-            "id" => images.first.id,
-            "image_page_id" => page.image_pages.first.id,
+            "id" => first_page_image.image_id,
+            "image_page_id" => first_page_image.id,
           },
         })
 

@@ -2,8 +2,8 @@ module Refinery
   module PageImages
     module Extension
       def has_many_page_images
-        has_many :image_pages, :as => :page, :order => 'position ASC'
-        has_many :images, :through => :image_pages, :order => 'position ASC'
+        has_many :image_pages, :as => :page, :class_name => 'Refinery::ImagePage', :order => 'position ASC'
+        has_many :images, :through => :image_pages, :class_name => 'Refinery::Image', :order => 'position ASC'
         # accepts_nested_attributes_for MUST come before def images_attributes=
         # this is because images_attributes= overrides accepts_nested_attributes_for.
 
