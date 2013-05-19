@@ -22,7 +22,7 @@ $(document).ready(function(){
   // Webkit browsers don't like the textarea being moved around the DOM,
   // they ignore the new contents. This is fixed below by adding a hidden
   // field that stays in place.
-  $('#content #page_images li textarea:hidden').each(function(index) {
+  $('#page_images li textarea:hidden').each(function(index) {
     var old_name = $(this).attr('name');
     $(this).attr('data-old-id', $(this).attr('id'));
     $(this).attr('name', 'ignore_me_' + index);
@@ -54,8 +54,8 @@ reset_functionality = function() {
     , stop: reindex_images
   });
 
-  $('#content #page_images li:not(.empty)').live('hover', function(e) {
-    if (e.type == 'mouseenter' || e.type == 'mouseover') {
+  $('#page_images').on('mouseenter mouseleave', 'li:not(.empty)', function(e) {
+    if (e.type == 'mouseenter') {
       if ((image_actions = $(this).find('.image_actions')).length == 0) {
         image_actions = $("<div class='image_actions'></div>");
         img_delete = $("<img src='/assets/refinery/icons/delete.png' width='16' height='16' />");
@@ -77,7 +77,7 @@ reset_functionality = function() {
       }
 
       image_actions.show();
-    } else if (e.type == 'mouseleave' || e.type == 'mouseout') {
+    } else if (e.type == 'mouseleave') {
       $(this).find('.image_actions').hide();
     }
   });
