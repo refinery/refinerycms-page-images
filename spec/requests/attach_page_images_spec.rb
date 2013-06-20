@@ -12,7 +12,7 @@ describe "attach page images" do
   end
 
   it "shows images tab" do
-    within "#custom_images_tab" do
+    within "#custom_#{::I18n.t(:'refinery.plugins.refinery_page_images.tab_name')}_tab" do
       page.should have_content("Images")
     end
   end
@@ -20,7 +20,7 @@ describe "attach page images" do
   # This spec actually is broken in a way because Add Image link would
   # be visible to capybara even if we don't click on Images tab.
   it "shows add image link" do
-    within "#custom_images_tab" do
+    within "#custom_#{::I18n.t(:'refinery.plugins.refinery_page_images.tab_name')}_tab" do
       click_link "Images"
     end
 
