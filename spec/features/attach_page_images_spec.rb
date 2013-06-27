@@ -4,7 +4,7 @@ describe "attach page images" do
   refinery_login_with :refinery_user
 
   before(:each) do
-    Factory(:page)
+    FactoryGirl.create(:page)
 
     visit refinery.admin_pages_path
 

@@ -3,17 +3,17 @@ require 'spec_helper'
 module Refinery
   describe Page do
     it "can have images added" do
-      page = Factory(:page)
+      page = FactoryGirl.create(:page)
       page.images.count.should eq(0)
 
-      page.images << Factory(:image)
+      page.images << FactoryGirl.create(:image)
       page.images.count.should eq(1)
     end
 
     describe "#images_attributes=" do
       it "adds images" do
-        page = Factory(:page)
-        image = Factory(:image)
+        page = FactoryGirl.create(:page)
+        image = FactoryGirl.create(:image)
 
         page.images.count.should == 0
         page.update_attributes({:images_attributes => {"0" => {"id" => image.id}}})
@@ -22,8 +22,8 @@ module Refinery
       end
 
       it "deletes specific images" do
-        page = Factory(:page)
-        images = [Factory(:image), Factory(:image)]
+        page = FactoryGirl.create(:page)
+        images = [FactoryGirl.create(:image), FactoryGirl.create(:image)]
         page.images = images
 
         page_image_to_keep = page.image_pages.find do |image_page|
@@ -40,8 +40,8 @@ module Refinery
       end
 
       it "deletes all images" do
-        page = Factory(:page)
-        images = [Factory(:image), Factory(:image)]
+        page = FactoryGirl.create(:page)
+        images = [FactoryGirl.create(:image), FactoryGirl.create(:image)]
         page.images = images
 
         page.update_attributes(:images_attributes => {"0" => {"id"=>""}})
@@ -50,8 +50,8 @@ module Refinery
       end
 
       it "reorders images" do
-        page = Factory(:page)
-        images = [Factory(:image), Factory(:image)]
+        page = FactoryGirl.create(:page)
+        images = [FactoryGirl.create(:image), FactoryGirl.create(:image)]
         page.images = images
 
         first_page_image = page.image_pages.find do |image_page|
