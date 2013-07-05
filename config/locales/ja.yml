@@ -1,0 +1,17 @@
+ja:
+  refinery:
+    plugins:
+      refinery_page_images:
+        title: ページ画像
+        tab_name: 画像
+        description: 一つのページに対して、複数または一つの画像を設定することが出来ます。
+    js:
+      admin:
+        page_images:
+          add_caption: キャプションを追加
+          done: 保存
+    admin:
+      pages:
+        tabs:
+          images_bar:
+            add: 画像を追加
