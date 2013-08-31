@@ -2,6 +2,7 @@ cs:
   refinery:
     plugins:
       refinery_page_images:
+        tab_name: Obrázky stránek
         title: Obrázky stránek
         description: Obrázky stránek vám dovoli připojit jeden či více obrázků ke stránce v Refinery. Umožní tak jednoduše vytvářet například galerie s lightboxem na frontendu.
     js:
