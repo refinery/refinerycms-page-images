@@ -2,6 +2,7 @@ es:
   refinery:
     plugins:
       refinery_page_images:
+        tab_name: Imágenes de Página
         title: Imágenes de Página
         tab_name: Imágenes
         description: Imágenes de página te permite relacionar una o más imagenes a cualquier página en Refinery lo que hace realmente fácil crear galerías de imágenes con diferentes estilos

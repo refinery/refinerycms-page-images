@@ -2,6 +2,7 @@ ja:
   refinery:
     plugins:
       refinery_page_images:
+        tab_name: ページ画像
         title: ページ画像
         tab_name: 画像
         description: 一つのページに対して、複数または一つの画像を設定することが出来ます。
