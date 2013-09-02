@@ -114,20 +114,16 @@ var image_added; // Global callback
   open_image_caption = function(e) {
     var list_item = $(this).parents('li').first(),
         textarea = list_item.find('.textarea_wrapper_for_wym > textarea'),
-        textarea_wrapper = textarea.parent(),
-        done_button = $("<div class='form-actions'><div class='form-actions-left'>" +
-                        "<a class='button'><%= I18n.t('refinery.js.admin.page_images.done') %>" +
-                        "</a></div></div>");
+        textarea_wrapper = textarea.parent();
 
-    done_button.on('click', function() { textarea_wrapper.dialog("close"); });
+    textarea_wrapper.find('.js-page-images-done').on('click', function() {
+      textarea_wrapper.dialog("close");
+    });
 
     var close_handler = function()  {
       textarea.data('wymeditor').update();
       textarea.removeClass('wymeditor')
               .removeClass('active_rotator_wymeditor');
-
-      // textarea_wrapper.appendTo('li.current_caption_list_item');
-      textarea_wrapper.find('.form-actions').remove();
 
       textarea_wrapper.find('.wym_box').remove();
 
@@ -138,7 +134,6 @@ var image_added; // Global callback
 
     // move the textarea out of the list item, and then move the textarea back into it when we click done.
     list_item.addClass('current_caption_list_item');
-    textarea.after(done_button);
     textarea_wrapper.dialog({
       title: "<%= I18n.t('refinery.js.admin.page_images.add_caption') %>"
       , modal: true
