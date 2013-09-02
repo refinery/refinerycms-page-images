@@ -115,42 +115,39 @@ var image_added; // Global callback
     var list_item = $(this).parents('li').first(),
         textarea = list_item.find('.textarea_wrapper_for_wym > textarea'),
         textarea_wrapper = textarea.parent(),
-        done_button = "<div class='form-actions'><div class='form-actions-left'>" +
-                      "<a class='button'><%= I18n.t('refinery.js.admin.page_images.done') %>" +
-                      "</a></div></div>";
+        done_button = $("<div class='form-actions'><div class='form-actions-left'>" +
+                        "<a class='button'><%= I18n.t('refinery.js.admin.page_images.done') %>" +
+                        "</a></div></div>");
 
+    done_button.on('click', function() { textarea_wrapper.dialog("close"); });
+
+    var close_handler = function()  {
+      textarea.data('wymeditor').update();
+      textarea.removeClass('wymeditor')
+              .removeClass('active_rotator_wymeditor');
+
+      // textarea_wrapper.appendTo('li.current_caption_list_item');
+      textarea_wrapper.find('.form-actions').remove();
+
+      textarea_wrapper.find('.wym_box').remove();
+
+      $('li.current_caption_list_item').removeClass('current_caption_list_item');
+      $('#' + textarea.attr('data-old-id')).val(textarea.val());
+      textarea_wrapper.dialog('destroy');
+    };
 
     // move the textarea out of the list item, and then move the textarea back into it when we click done.
     list_item.addClass('current_caption_list_item');
-
     textarea.after(done_button);
     textarea_wrapper.dialog({
-       title: "<%= I18n.t('refinery.js.admin.page_images.add_caption') %>"
-       , modal: true
-       , resizable: false
-       , autoOpen: true
-       , width: 928
-       , height: 530
-     });
-
-    $('.ui-dialog:visible .ui-dialog-titlebar-close, .ui-dialog:visible .form-actions a.button')
-      .on('click',
-        $.proxy(function(e) {
-          // update the editor
-          textarea.data('wymeditor').update();
-          textarea.removeClass('wymeditor')
-                  .removeClass('active_rotator_wymeditor');
-
-          textarea_wrapper.dialog("destroy");
-          // textarea_wrapper.appendTo('li.current_caption_list_item');
-          textarea_wrapper.find('.form-actions').remove();
-
-          textarea_wrapper.find('.wym_box').remove();
-
-          $('li.current_caption_list_item').removeClass('current_caption_list_item');
-          $('#' + textarea.attr('data-old-id')).val(textarea.val());
-        }, textarea)
-      );
+      title: "<%= I18n.t('refinery.js.admin.page_images.add_caption') %>"
+      , modal: true
+      , resizable: false
+      , autoOpen: true
+      , width: 928
+      , height: 530
+      , close: close_handler
+    });
 
     textarea.addClass('wymeditor active_rotator_wymeditor widest').wymeditor(wymeditor_boot_options);
   };
