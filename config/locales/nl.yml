@@ -2,6 +2,7 @@ nl:
   refinery:
     plugins:
       refinery_page_images:
+        tab_name: Pagina Afbeeldingen
         title: Pagina Afbeeldingen
         description: Pagina Afbeeldingen stelt u in staat op afbeeldingen te koppelen aan een specifieke pagina.
     admin:
