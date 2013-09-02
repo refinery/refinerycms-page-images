@@ -2,9 +2,10 @@ module Refinery
   module PageImages
     include ActiveSupport::Configurable
 
-    config_accessor :captions, :enable_for
+    config_accessor :captions, :enable_for, :wysiwyg
 
     self.captions = false
+    self.wysiwyg = true
     self.enable_for = [
       { :model => 'Refinery::Page', :tab => 'Refinery::Pages::Tab' },
     ]

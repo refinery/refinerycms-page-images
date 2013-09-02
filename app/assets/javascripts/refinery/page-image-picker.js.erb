@@ -1,12 +1,15 @@
 <%# encoding: utf-8 %>
 var image_added; // Global callback
 (function($) {
-  var reset_functionality, open_image_caption, reindex_images;
+  var reset_functionality, open_image_caption, reindex_images,
+      template_li, wysiwyg_enabled, input_type;
   $(document).ready(function(){
+    var picker = $('#page_image_picker');
+    input_type = picker.data('input-type');
+    wysiwyg_enabled = input_type == 'wym';
 
     $('#custom_images_tab a').click(function(){
-      var picker = $('#page_image_picker');
-      if (picker.data('size-applied')){
+      if (!picker.data('size-applied') && wysiwyg_enabled){
         var wym_box = $('.page_part:first .wym_box'),
             iframe = $('.page_part:first iframe');
         picker.css({
@@ -45,12 +48,19 @@ var image_added; // Global callback
     });
 
     reset_functionality();
+
+
+    // Once the plugin has init'd everything, remove the template UI
+    $('.page-images-caption-modal').hide();
+    template_li = $('#page_images .js-page-images-template').detach();
   });
 
   reset_functionality = function() {
-    WYMeditor.onload_functions.push(function(){
-      $('.wym_box').css({'width':null});
-    });
+    if(wysiwyg_enabled) {
+      WYMeditor.onload_functions.push(function(){
+        $('.wym_box').css({'width':null});
+      });
+    }
 
     $("#page_images").sortable({
       'tolerance': 'pointer'
@@ -60,7 +70,7 @@ var image_added; // Global callback
       , stop: reindex_images
     });
 
-    $('#page_images').on('mouseenter mouseleave', 'li:not(.empty)', function(e) {
+    $('#page_images').on('mouseenter mouseleave', 'li', function(e) {
       var $this = $(this),
           image_actions = $this.find('.image_actions');
       if (e.type == 'mouseenter') {
@@ -94,8 +104,7 @@ var image_added; // Global callback
   };
 
   image_added = function(image) {
-    var current_list_item = $('li.empty'),
-        new_list_item = current_list_item.clone(),
+    var current_list_item = template_li.clone(),
         image_id = $(image).attr('id').replace('image_', '');
     current_list_item.find('input:hidden:first').val(image_id);
 
@@ -107,25 +116,27 @@ var image_added; // Global callback
 
     current_list_item.attr('id', 'image_' + image_id).removeClass('empty');
 
-    new_list_item.appendTo($('#page_images'));
+    current_list_item.appendTo($('#page_images'));
     reset_functionality();
   };
 
   open_image_caption = function(e) {
-    var list_item = $(this).parents('li').first(),
-        textarea = list_item.find('.textarea_wrapper_for_wym > textarea'),
-        textarea_wrapper = textarea.parent();
+    var list_item = $(this).closest('li'),
+        textarea = list_item.find('.page-images-caption-modal > textarea'),
+        textarea_wrapper = textarea.parent(),
+        modal_size = {
+          textarea: { width: 400, height: 'auto' },
+          wym: { width: 928, height: 530 }
+        };
 
     textarea_wrapper.find('.js-page-images-done').on('click', function() {
       textarea_wrapper.dialog("close");
     });
 
-    var close_handler = function()  {
-      textarea.data('wymeditor').update();
-      textarea.removeClass('wymeditor')
-              .removeClass('active_rotator_wymeditor');
-
-      textarea_wrapper.find('.wym_box').remove();
+    var close_handler = function() {
+      if(wysiwyg_enabled) {
+        textarea.data('wymeditor').update();
+      }
 
       $('li.current_caption_list_item').removeClass('current_caption_list_item');
       $('#' + textarea.attr('data-old-id')).val(textarea.val());
@@ -139,12 +150,17 @@ var image_added; // Global callback
       , modal: true
       , resizable: false
       , autoOpen: true
-      , width: 928
-      , height: 530
+      , width: modal_size[input_type].width
+      , height: modal_size[input_type].height
       , close: close_handler
     });
 
-    textarea.addClass('wymeditor active_rotator_wymeditor widest').wymeditor(wymeditor_boot_options);
+    if(wysiwyg_enabled) {
+      textarea.addClass('wymeditor active_rotator_wymeditor widest').wymeditor(wymeditor_boot_options);
+    }
+    else {
+      textarea.show();
+    }
   };
 
   reindex_images = function() {

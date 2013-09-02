@@ -1,4 +1,5 @@
-<div class="page_part" id='page_image_picker'>
+<div class="page_part" id='page_image_picker'
+     data-input-type="<%= Refinery::PageImages.config.wysiwyg ? 'wym' : 'textarea'%>">
   <%= render '/refinery/admin/pages/tabs/images_field', :f => f %>
   <%= render '/refinery/admin/pages/tabs/images_bar', :f => f %>
 </div>

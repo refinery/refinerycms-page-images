@@ -40,6 +40,12 @@ You can enable captions using an initializer containing the following configurat
 Refinery::PageImages.captions = true
 ```
 
+By default, captions are WYM editors. Prefer `textarea`s ? Gotcha :
+
+```ruby
+Refinery::PageImages.wysiwyg = false
+```
+
 ## Usage
 
 `app/views/refinery/pages/show.html.erb`

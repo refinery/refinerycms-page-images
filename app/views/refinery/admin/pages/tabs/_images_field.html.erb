@@ -6,6 +6,8 @@
   </div>
 <% end %>
 
+<% modal_class = Refinery::PageImages.config.wysiwyg ? 'wym' : 'plain' %>
+
 <div class='wym_box field images_field'>
   <ul id='page_images' class='clearfix'>
     <%= f.fields_for :images do |image_form| %>
@@ -15,7 +17,7 @@
         <% index = image_form.object_name.split('[').last.split(']').first.to_i %>
         <%= hidden_field_tag "#{f.object_name.demodulize}[images_attributes][#{index}][image_page_id]", f.object.image_page_id_for_image_index(index) %>
         <% if Refinery::PageImages.captions %>
-          <div class='textarea_wrapper_for_wym'>
+          <div class='page-images-caption-modal <%= modal_class %>'>
             <%= text_area_tag "#{f.object_name.demodulize}[images_attributes][#{index}][caption]",
                               f.object.caption_for_image_index(index),
                               :style => 'display: none',
@@ -26,10 +28,10 @@
         <% end %>
       </li>
     <% end %>
-    <li class='empty'>
+    <li class='js-page-images-template'>
       <%= hidden_field_tag "#{f.object_name.demodulize}[images_attributes][#{f.object.images.size}][id]" %>
       <% if Refinery::PageImages.captions %>
-        <div class='textarea_wrapper_for_wym'>
+        <div class='page-images-caption-modal <%= modal_class %>'>
           <%= text_area_tag "#{f.object_name.demodulize}[images_attributes][#{f.object.images.size}][caption]",
                             '',
                             :style => 'display: none',
