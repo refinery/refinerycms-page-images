@@ -1,3 +1,11 @@
+<% form_actions = capture do %>
+  <div class='form-actions'>
+    <div class='form-actions-left'>
+      <a class='button js-page-images-done'><%= I18n.t('refinery.js.admin.page_images.done') %></a>
+    </div>
+  </div>
+<% end %>
+
 <div class='wym_box field images_field'>
   <ul id='page_images' class='clearfix'>
     <%= f.fields_for :images do |image_form| %>
@@ -13,6 +21,7 @@
                               :style => 'display: none',
                               :id => "page_captions_#{index}",
                               :class => 'page_caption' %>
+            <%= raw form_actions %>
           </div>
         <% end %>
       </li>
@@ -26,6 +35,7 @@
                             :style => 'display: none',
                             :id => "page_captions_#{f.object.images.size}",
                             :class => 'page_caption' %>
+          <%= raw form_actions %>
         </div>
       <% end %>
     </li>
