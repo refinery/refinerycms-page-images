@@ -55,3 +55,9 @@ a#add_image_link {
   border-bottom: 0;
   background: image-url('refinery/icons/add.png') no-repeat 0px 6px;
 }
+
+.page-images-caption-modal.plain {
+  textarea {
+    width: 400px;
+  }
+}
