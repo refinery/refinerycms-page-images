@@ -7,6 +7,7 @@ Gem::Specification.new do |s|
   s.homepage          = %q{http://github.com/refinery/refinerycms-page-images}
   s.authors           = ['Philip Arndt', 'David Jones']
   s.require_paths     = %w(lib)
+  s.license            = %q{MIT}
 
   s.files             = `git ls-files`.split("\n")
   s.test_files        = `git ls-files -- spec/*`.split("\n")
