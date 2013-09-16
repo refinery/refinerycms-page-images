@@ -2,8 +2,17 @@ source "http://rubygems.org"
 
 gemspec
 
-gem 'refinerycms', '~> 2.1.0'
-gem 'refinerycms-testing', '~> 2.1.0', :group => :test
+git 'https://github.com/refinery/refinerycms.git', branch: 'rails4' do
+  gem 'refinerycms-authentication'
+  gem 'refinerycms-dashboard'
+  gem 'refinerycms-pages'
+  gem 'refinerycms-images'
+  gem 'refinerycms-testing', group: :test
+end
+gem 'refinerycms-i18n', github: 'refinery/refinerycms-i18n', branch: 'master'
+gem 'protected_attributes'
+gem 'globalize3', github: 'svenfuchs/globalize3', branch: 'rails4'
+gem 'seo_meta', github: 'parndt/seo_meta', branch: 'master'
 
 # Database Configuration
 unless ENV['TRAVIS']
