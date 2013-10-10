@@ -9,6 +9,7 @@
 <% modal_class = Refinery::PageImages.config.wysiwyg ? 'wym' : 'plain' %>
 
 <div class='wym_box field images_field'>
+  <%= hidden_field_tag "#{f.object_name.demodulize}[images_attributes][-1]", "" %>
   <ul id='page_images' class='clearfix'>
     <%= f.fields_for :images do |image_form| %>
       <li id='image_<%= image_form.object.id %>'>
