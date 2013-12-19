@@ -79,7 +79,8 @@ rake refinery:override view=refinery/pages/show
   <ul id='gallery'>
     <% @page.images.each do |image| %>
       <li>
-        <%= link_to image_tag(image.thumbnail("200x200#c").url), image.thumbnail("900x600").url %>
+        <%= link_to image_tag(image.thumbnail(geometry: "200x200#c").url), 
+                    image.thumbnail(geometry: "900x600").url %>
       </li>
    <% end %>
   </ul>
@@ -94,7 +95,8 @@ If you have enabled captions, you can show them like this
   <ul id='gallery'>
     <% @page.images.each_with_index do |image, index| %>
       <li>
-        <%= link_to image_tag(image.thumbnail("200x200#c").url), image.thumbnail("900x600").url %>
+        <%= link_to image_tag(image.thumbnail(geometry: "200x200#c").url), 
+                    image.thumbnail(geometry: "900x600").url %>
         <span class='caption'><%=raw @page.caption_for_image_index(index) %></span>
       </li>
    <% end %>
