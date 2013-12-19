@@ -13,7 +13,7 @@ gem 'refinerycms-i18n', github: 'refinery/refinerycms-i18n', branch: 'master'
 gem 'protected_attributes'
 gem 'globalize', github: 'globalize/globalize', branch: 'master'
 gem 'seo_meta', github: 'parndt/seo_meta', branch: 'master'
-
+gem 'mime-types', '~> 1.16'
 # Database Configuration
 unless ENV['TRAVIS']
   gem 'activerecord-jdbcsqlite3-adapter', :platform => :jruby
