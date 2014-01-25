@@ -10,7 +10,6 @@ git 'https://github.com/refinery/refinerycms.git', branch: 'master' do
   gem 'refinerycms-testing', group: :test
 end
 gem 'refinerycms-i18n', github: 'refinery/refinerycms-i18n', branch: 'master'
-gem 'protected_attributes'
 gem 'globalize', github: 'globalize/globalize', branch: 'master'
 gem 'seo_meta', github: 'parndt/seo_meta', branch: 'master'
 gem 'mime-types', '~> 1.16'
