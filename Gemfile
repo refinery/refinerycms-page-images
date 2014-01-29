@@ -2,17 +2,16 @@ source "http://rubygems.org"
 
 gemspec
 
-git 'https://github.com/refinery/refinerycms.git', branch: 'master' do
-  gem 'refinerycms-authentication'
-  gem 'refinerycms-dashboard'
-  gem 'refinerycms-pages'
-  gem 'refinerycms-images'
-  gem 'refinerycms-testing', group: :test
+gem 'refinerycms', github: 'refinery/refinerycms'
+gem 'refinerycms-i18n', github: 'refinery/refinerycms-i18n'
+
+gem "mime-types", "~> 1.25"
+
+group :test do
+  gem 'refinerycms-testing', github: 'refinery/refinerycms'
+  gem 'poltergeist'
 end
-gem 'refinerycms-i18n', github: 'refinery/refinerycms-i18n', branch: 'master'
-gem 'globalize', github: 'globalize/globalize', branch: 'master'
-gem 'seo_meta', github: 'parndt/seo_meta', branch: 'master'
-gem 'mime-types', '~> 1.16'
+
 # Database Configuration
 unless ENV['TRAVIS']
   gem 'activerecord-jdbcsqlite3-adapter', :platform => :jruby
@@ -30,18 +29,9 @@ if !ENV['TRAVIS'] || ENV['DB'] == 'postgresql'
   gem 'pg', :platform => :ruby
 end
 
-gem 'jruby-openssl', :platform => :jruby
-
-group :test do
-  gem 'poltergeist'
-end
-
 # Refinery/rails should pull in the proper versions of these
-group :assets do
-  gem 'sass-rails'
-  gem 'coffee-rails'
-  gem 'uglifier'
-end
+gem 'sass-rails', '~> 4.0.0'
+gem 'coffee-rails', '~> 4.0.0'
 
 # Load local gems according to Refinery developer preference.
 if File.exist? local_gemfile = File.expand_path('../.gemfile', __FILE__)
