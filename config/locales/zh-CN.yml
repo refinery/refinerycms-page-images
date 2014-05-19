@@ -1,0 +1,18 @@
+zh-CN:
+  refinery:
+    plugins:
+      refinery_page_images:
+        tab_name: 页面图片
+        title: 页面图片
+        tab_name: 图片
+        description: 页面图片让您关连一幅或多幅图片至系统中任何页面。让您能非常简易建立简单的图片库，并加上如lightbox 的跳出视窗。
+    js:
+      admin:
+        page_images:
+          add_caption: 新增说明
+          done: 完成
+    admin:
+      pages:
+        tabs:
+          images_bar:
+            add: 新增图片
