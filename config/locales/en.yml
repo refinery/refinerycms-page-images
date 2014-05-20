@@ -2,7 +2,6 @@ en:
   refinery:
     plugins:
       refinery_page_images:
-        tab_name: Page Images
         title: Page Images
         tab_name: Images
         description: Page Images allows you to relate one or more images to any page in Refinery which makes it really easy for you to create simple image galleries with lightbox style popups on the front end page views.
