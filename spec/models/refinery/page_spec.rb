@@ -10,23 +10,6 @@ module Refinery
       page.images.count.should eq(1)
     end
 
-    it 'has an images_with_captions collection' do
-      page = FactoryGirl.create(:page)
-      page.images_with_captions.count.should eq(0)
-
-      page.images << FactoryGirl.create(:image)
-      page.images_with_captions.count.should eq(1)
-    end
-
-    it 'returns an image and a caption' do
-
-      page = FactoryGirl.create(:page)
-      page.images << FactoryGirl.create(:image)
-
-      page.images_with_captions.first[:image].should be_a(Refinery::Image)
-      page.images_with_captions.first[:caption].should be_a(String)
-    end
-
     describe "#images_attributes=" do
       it "adds images" do
         page = FactoryGirl.create(:page)
