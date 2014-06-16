@@ -24,10 +24,9 @@ module Refinery
         end
       end
 
-      before_inclusion do
+      initializer "register refinery_page_images plugin" do
         Refinery::Plugin.register do |plugin|
-          plugin.name = 'page_images'
-          plugin.pathname = root
+          plugin.name = "page_images"
           plugin.hide_from_menu = true
         end
       end
