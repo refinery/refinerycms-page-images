@@ -26,6 +26,26 @@ module Refinery
 
     end
 
+    describe '#images_with_captions' do
+      it 'returns an images_with_captions collection' do
+        page = FactoryGirl.create(:page)
+        page.images_with_captions.count.should eq(0)
+
+        page.images << FactoryGirl.create(:image)
+        page.images_with_captions.count.should eq(1)
+      end
+
+      it 'returns an image and a caption' do
+        page = FactoryGirl.create(:page)
+        page.images_with_captions.count.should eq(0)
+
+        page.images << FactoryGirl.create(:image)
+        page.images_with_captions.first[:image].should be_a(Refinery::Image)
+        page.images_with_captions.first[:caption].should be_a(String)
+      end
+
+    end
+
     describe "#images_attributes=" do
       it "adds images" do
         image = FactoryGirl.create(:image)
