@@ -1,10 +1,10 @@
 Gem::Specification.new do |s|
   s.name              = %q{refinerycms-page-images}
-  s.version           = %q{2.1.0}
-  s.description       = %q{Attach images to pages ins Refinery CMS}
+  s.version           = %q{2.1.1}
+  s.description       = %q{Attach images to pages in Refinery CMS}
   s.summary           = %q{Page Images extension for Refinery CMS}
   s.email             = %q{info@refinerycms.com}
-  s.homepage          = %q{http://github.com/refinery/refinerycms-page-images}
+  s.homepage          = %q{https://github.com/refinery/refinerycms-page-images}
   s.authors           = ['Philip Arndt', 'David Jones']
   s.require_paths     = %w(lib)
   s.license            = %q{MIT}
