@@ -6,7 +6,7 @@ Page Images allows you to relate one or more images to any page in Refinery whic
 
 ## Requirements
 
-* refinerycms >= 3.0.0
+* refinerycms >= 2.1.0
 
 ## Features
 
@@ -18,10 +18,10 @@ Page Images allows you to relate one or more images to any page in Refinery whic
 
 ## Install
 
-Add this line to your application's `Gemfile`
+Add this line to your applications `Gemfile`
 
 ```ruby
-gem 'refinerycms-page-images', '~> 3.0.0'
+gem 'refinerycms-page-images', '~> 2.1.0'
 ```
 
 Next run
@@ -65,12 +65,6 @@ By default, captions are WYM editors. Prefer `textarea`s? Gotcha :
 
 ```ruby
 Refinery::PageImages.wysiwyg = false
-```
-
-Note that WYMeditor support requires that you have the extension in your Gemfile:
-
-```ruby
-gem 'refinerycms-wymeditor', '~> 1.0.0'
 ```
 
 ## Usage
@@ -122,15 +116,15 @@ If you have enabled captions, you can show them like this
 or like this
 ```erb
 <% content_for :body_content_right do %>
-  <section id='gallery'>
+  <ul id='gallery'>
     <% @page.images_with_captions do |iwc| %>
-      <figure>
+      <li>
         <%= link_to image_tag(iwc.image.thumbnail(geometry: "200x200#c").url),
                     iwc.image.thumbnail(geometry: "900x600").url %>
-        <figcaption><%=raw iwc.caption %></figcaption>
-      </figure>
+        <span class='caption'><%=raw iwc.caption %></span>
+      </li>
    <% end %>
-  </section>
+  </ul>
 <% end %>
 <%= render :partial => "/refinery/content_page" %>
 ```
