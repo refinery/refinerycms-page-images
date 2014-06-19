@@ -10,9 +10,11 @@ Page Images allows you to relate one or more images to any page in Refinery whic
 
 ## Features
 
-* Ability to select one or more images from the image picker and relate them to a page
+* Ability to select one or more images from the image picker and assign them to a page
+* An image can be assigned to more than one page
 * Reordering support, simply drag into order
-* Optionally include captions with each image.
+* An image assigned to a page can have a caption.
+* An image's caption can be different for different pages
 
 ## Install
 
@@ -34,7 +36,7 @@ Now when you start up your Refinery application, edit a page and there should be
 
 # Deploying to Heroku
 
-In order to properly precompile assets on Heroku, config vars be present in the environment during slug compilation. 
+In order to properly precompile assets on Heroku, config vars must be present in the environment during slug compilation.
 
 ```bash
 heroku labs:enable user-env-compile -a myapp
@@ -48,17 +50,18 @@ TCP/IP connections on port 5432?
 ```
 
 
-["More Details"](https://devcenter.heroku.com/articles/labs-user-env-compile)
+[More Details](https://devcenter.heroku.com/articles/labs-user-env-compile)
 
 ## Enable Captions
 
 You can enable captions using an initializer containing the following configuration:
 
 ```ruby
+# app/config/initializers/refinery/page-images.rb
 Refinery::PageImages.captions = true
 ```
 
-By default, captions are WYM editors. Prefer `textarea`s ? Gotcha :
+By default, captions are WYM editors. Prefer `textarea`s? Gotcha :
 
 ```ruby
 Refinery::PageImages.wysiwyg = false
@@ -74,12 +77,18 @@ If you don't have this file then Refinery will be using its default. You can ove
 rake refinery:override view=refinery/pages/show
 ```
 
+If images have been assigned to a page several objects are available for showing on the page. They are
+
+* `@page.images`: A collection of images assigned to the page.
+* `@page.caption_for_image_index(i)` will return the caption (if any) for the i<sup>th</sup> image in @page.images
+* `@page.images_with_captions`: A collection of image_with_caption objects with the attributes image: and caption:
+
 ```erb
 <% content_for :body_content_right do %>
   <ul id='gallery'>
     <% @page.images.each do |image| %>
       <li>
-        <%= link_to image_tag(image.thumbnail(geometry: "200x200#c").url), 
+        <%= link_to image_tag(image.thumbnail(geometry: "200x200#c").url),
                     image.thumbnail(geometry: "900x600").url %>
       </li>
    <% end %>
@@ -95,7 +104,7 @@ If you have enabled captions, you can show them like this
   <ul id='gallery'>
     <% @page.images.each_with_index do |image, index| %>
       <li>
-        <%= link_to image_tag(image.thumbnail(geometry: "200x200#c").url), 
+        <%= link_to image_tag(image.thumbnail(geometry: "200x200#c").url),
                     image.thumbnail(geometry: "900x600").url %>
         <span class='caption'><%=raw @page.caption_for_image_index(index) %></span>
       </li>
@@ -104,7 +113,21 @@ If you have enabled captions, you can show them like this
 <% end %>
 <%= render :partial => "/refinery/content_page" %>
 ```
-
+or like this
+```erb
+<% content_for :body_content_right do %>
+  <ul id='gallery'>
+    <% @page.images_with_captions do |iwc| %>
+      <li>
+        <%= link_to image_tag(iwc.image.thumbnail(geometry: "200x200#c").url),
+                    iwc.image.thumbnail(geometry: "900x600").url %>
+        <span class='caption'><%=raw iwc.caption %></span>
+      </li>
+   <% end %>
+  </ul>
+<% end %>
+<%= render :partial => "/refinery/content_page" %>
+```
 ## Screenshot
 
 ![Refinery CMS Page Images Screenshot](http://refinerycms.com/system/images/0000/1736/refinerycms-page-images.png)
