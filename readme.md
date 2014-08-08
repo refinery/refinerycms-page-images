@@ -117,11 +117,11 @@ or like this
 ```erb
 <% content_for :body_content_right do %>
   <ul id='gallery'>
-    <% @page.images_with_captions do |iwc| %>
+    <% @page.images_with_captions.each do |iwc| %>
       <li>
-        <%= link_to image_tag(iwc.image.thumbnail(geometry: "200x200#c").url),
-                    iwc.image.thumbnail(geometry: "900x600").url %>
-        <span class='caption'><%=raw iwc.caption %></span>
+        <%= link_to image_tag(iwc[:image].thumbnail(geometry: "200x200#c").url),
+                    iwc[:image].thumbnail(geometry: "900x600").url %>
+        <span class='caption'><%=raw iwc[:caption] %></span>
       </li>
    <% end %>
   </ul>
