@@ -13,4 +13,5 @@ Gem::Specification.new do |s|
   s.test_files        = `git ls-files -- spec/*`.split("\n")
 
   s.add_dependency    'refinerycms-pages', '~> 3.0.0'
+  s.add_dependency    'decorators',        '~> 1.0.0'
 end
