@@ -4,6 +4,7 @@ gemspec
 
 gem 'refinerycms', github: 'refinery/refinerycms'
 gem 'refinerycms-i18n', github: 'refinery/refinerycms-i18n'
+gem 'refinerycms-wymeditor', '~> 1.0.0'
 
 gem "mime-types", "~> 1.25"
 

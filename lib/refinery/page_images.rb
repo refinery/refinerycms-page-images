@@ -1,4 +1,5 @@
 require 'refinerycms-core'
+require 'globalize'
 
 module Refinery
   autoload :PageImagesGenerator, 'generators/refinery/page_images_generator'
@@ -27,6 +28,10 @@ module Refinery
         end
 
         Refinery::Image.send :has_many, :image_pages, :dependent => :destroy
+
+        # dosnt work wothout this...
+        require root.join('app/decorators/controllers/refinery/admin/pages_controller_decorator.rb')
+
       end
     end
 

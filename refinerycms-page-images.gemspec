@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name              = %q{refinerycms-page-images}
-  s.version           = %q{3.0.0.dev}
+  s.version           = %q{3.0.0}
   s.description       = %q{Attach images to pages ins Refinery CMS}
   s.summary           = %q{Page Images extension for Refinery CMS}
   s.email             = %q{info@refinerycms.com}
@@ -13,4 +13,6 @@ Gem::Specification.new do |s|
   s.test_files        = `git ls-files -- spec/*`.split("\n")
 
   s.add_dependency    'refinerycms-pages', '~> 3.0.0'
+  s.add_dependency    'decorators',        '~> 1.0.0'
+  s.add_dependency    'globalize',         '~> 4.0'
 end
