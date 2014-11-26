@@ -13,7 +13,7 @@ describe Refinery::PageImages::Engine do
   end
 
   before(:each) do
-    Refinery::PageImages.config.stub(:enable_for).and_return(enable_for_config)
+    allow(Refinery::PageImages.config).to receive(:enable_for).and_return(enable_for_config)
   end
 
   def enable_for_config
@@ -23,18 +23,18 @@ describe Refinery::PageImages::Engine do
 
   describe "attach initializer" do
     it "calls attach on all configured model" do
-      Refinery::PageImages.config.stub(:enable_for).and_return(enable_for_config)
+      allow(Refinery::PageImages.config).to receive(:enable_for).and_return(enable_for_config)
 
-      Refinery::PageImages::EnableForMock::Model.should_receive(:has_many_page_images).once
-      Refinery::Page.should_not_receive(:has_many_page_images)
+      expect(Refinery::PageImages::EnableForMock::Model).to receive(:has_many_page_images).once
+      expect(Refinery::Page).not_to receive(:has_many_page_images)
       ActionDispatch::Reloader.prepare!
     end
   end
 
   describe "attach_initialize_tabs!" do
     it "registers tabs for all configured engine" do
-      Refinery::PageImages::EnableForMock::Tab.should_receive(:register).once
-      Refinery::Pages::Tab.should_not_receive(:register)
+      expect(Refinery::PageImages::EnableForMock::Tab).to receive(:register).once
+      expect(Refinery::Pages::Tab).not_to receive(:register)
       Refinery::PageImages::Engine.initialize_tabs!
     end
   end

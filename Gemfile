@@ -2,14 +2,14 @@ source "http://rubygems.org"
 
 gemspec
 
-gem 'refinerycms', github: 'refinery/refinerycms'
-gem 'refinerycms-i18n', github: 'refinery/refinerycms-i18n'
+gem 'refinerycms', git: 'https://github.com/refinery/refinerycms'
+gem 'refinerycms-i18n', git: 'https://github.com/refinery/refinerycms-i18n'
 gem 'refinerycms-wymeditor', '~> 1.0.0'
 
 gem "mime-types", "~> 1.25"
 
 group :test do
-  gem 'refinerycms-testing', github: 'refinery/refinerycms'
+  gem 'refinerycms-testing', git: 'https://github.com/refinery/refinerycms'
   gem 'poltergeist'
 end
 

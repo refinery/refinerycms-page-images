@@ -17,11 +17,11 @@ module Refinery
       end
 
       it 'returns an image and a caption' do
-        page.images_with_captions.count.should eq(0)
+        expect(page.images_with_captions.count).to eq(0)
 
         page.image_pages.create(image: FactoryGirl.build(:image))
-        page.images_with_captions.first[:image].should be_a(Refinery::Image)
-        page.images_with_captions.first[:caption].should be_a(String)
+        expect(page.images_with_captions.first[:image]).to be_a(Refinery::Image)
+        expect(page.images_with_captions.first[:caption]).to be_a(String)
       end
 
     end
@@ -53,13 +53,13 @@ module Refinery
             },
           })
 
-          page.images.should eq([images.first])
+          expect(page.images).to eq([images.first])
         end
 
         it "deletes all images" do
           page.update_attributes(:images_attributes => {"0" => {"id"=>""}})
 
-          page.images.should be_empty
+          expect(page.images).to be_empty
         end
 
         it "reorders images" do
@@ -81,7 +81,7 @@ module Refinery
             },
           })
 
-          page.images.should eq([images.second, images.first])
+          expect(page.images).to eq([images.second, images.first])
         end
       end
     end

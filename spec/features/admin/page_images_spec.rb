@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe "page images" do
+describe "page images", :type => :feature do
   refinery_login_with :refinery_user
 
   let(:configure) {}
@@ -21,26 +21,26 @@ describe "page images" do
     image
     setup_and_visit
 
-    page_for_images.images.count.should eq 0
+    expect(page_for_images.images.count).to eq 0
 
     page.find("#{page_images_tab_id} a").click
 
     # Add the first Image
     click_link "Add Image"
 
-    page.should have_selector 'iframe#dialog_iframe'
+    expect(page).to have_selector 'iframe#dialog_iframe'
     page.within_frame('dialog_iframe') do
       find(:css, "#existing_image_area img#image_#{image.id}").click
       click_button ::I18n.t('button_text', :scope => 'refinery.admin.images.existing_image')
     end
 
     # image should be visable on the page
-    page.should have_selector("#page_images li#image_#{image.id}")
+    expect(page).to have_selector("#page_images li#image_#{image.id}")
 
     click_button "Save"
 
     # image should be in the db
-    page_for_images.images.count.should eq 1
+    expect(page_for_images.images.count).to eq 1
 
   end
 
@@ -53,21 +53,21 @@ describe "page images" do
 
       setup_and_visit
 
-      page_for_images.images.count.should eq 1
+      expect(page_for_images.images.count).to eq 1
 
       page.find("#{page_images_tab_id} a").click
 
-      page.should have_selector("#page_images li#image_#{page_for_images.images.first.id}")
+      expect(page).to have_selector("#page_images li#image_#{page_for_images.images.first.id}")
 
       image_li_tag = page.find("#page_images li:first-child")
       image_li_tag.hover
       within(image_li_tag) { page.find('img:first-child').click }
 
-      page.should_not have_selector("#page_images li#image_#{page_for_images.images.first.id}")
+      expect(page).not_to have_selector("#page_images li#image_#{page_for_images.images.first.id}")
 
       click_button "Save"
 
-      page_for_images.images.count.should eq 0
+      expect(page_for_images.images.count).to eq 0
 
     end
   end

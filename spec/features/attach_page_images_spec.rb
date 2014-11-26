@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe "attach page images" do
+describe "attach page images", :type => :feature do
   refinery_login_with :refinery_user
 
   # No-op block : use default configuration by default
@@ -19,7 +19,7 @@ describe "attach page images" do
   it "shows images tab" do
     setup_and_visit
     within page_images_tab_id do
-      page.should have_content("Images")
+      expect(page).to have_content("Images")
     end
   end
 
@@ -31,7 +31,7 @@ describe "attach page images" do
       click_link "Images"
     end
 
-    page.should have_content("Add Image")
+    expect(page).to have_content("Add Image")
   end
 
   context "with caption and WYSIWYG disabled" do
@@ -51,7 +51,7 @@ describe "attach page images" do
       image_li_tag.hover
       within(image_li_tag) { page.find('img.caption').click }
 
-      page.find('.ui-dialog textarea').should be_visible
+      expect(page.find('.ui-dialog textarea')).to be_visible
     end
   end
 
