@@ -1,0 +1,17 @@
+it:
+  refinery:
+    plugins:
+      refinery_page_images:
+        title: Immagini delle Pagine
+        tab_name: Immagini
+        description: Immagini delle Pagine ti permette di associare una o più immagini ad ogni pagina di Refinery rendendo molto semplice creare semplici gallerie di immagini con diversi stili.
+    js:
+      admin:
+        page_images:
+          add_caption: Aggiungi Didascalia
+          done: Fatto
+    admin:
+      pages:
+        tabs:
+          images_bar:
+            add: Aggiungi Immagine
