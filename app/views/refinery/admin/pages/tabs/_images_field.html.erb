@@ -30,13 +30,13 @@
       </li>
     <% end %>
     <li class='js-page-images-template'>
-      <%= hidden_field_tag "#{f.object_name.demodulize}[images_attributes][#{f.object.images.size}][id]" %>
+      <%= hidden_field_tag "#{f.object_name.demodulize}[images_attributes][#{f.object.images.length}][id]" %>
       <% if Refinery::PageImages.captions %>
         <div class='page-images-caption-modal <%= modal_class %>'>
-          <%= text_area_tag "#{f.object_name.demodulize}[images_attributes][#{f.object.images.size}][caption]",
+          <%= text_area_tag "#{f.object_name.demodulize}[images_attributes][#{f.object.images.length}][caption]",
                             '',
                             :style => 'display: none',
-                            :id => "page_captions_#{f.object.images.size}",
+                            :id => "page_captions_#{f.object.images.length}",
                             :class => 'page_caption' %>
           <%= raw form_actions %>
         </div>
