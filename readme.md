@@ -122,15 +122,15 @@ If you have enabled captions, you can show them like this
 or like this
 ```erb
 <% content_for :body_content_right do %>
-  <section id='gallery'>
-    <% @page.images_with_captions do |iwc| %>
-      <figure>
-        <%= link_to image_tag(iwc.image.thumbnail(geometry: "200x200#c").url),
-                    iwc.image.thumbnail(geometry: "900x600").url %>
-        <figcaption><%=raw iwc.caption %></figcaption>
-      </figure>
+  <ul id='gallery'>
+    <% @page.images_with_captions.each do |iwc| %>
+      <li>
+        <%= link_to image_tag(iwc[:image].thumbnail(geometry: "200x200#c").url),
+                    iwc[:image].thumbnail(geometry: "900x600").url %>
+        <span class='caption'><%=raw iwc[:caption] %></span>
+      </li>
    <% end %>
-  </section>
+  </ul>
 <% end %>
 <%= render :partial => "/refinery/content_page" %>
 ```
