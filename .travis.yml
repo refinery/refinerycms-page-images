@@ -2,8 +2,8 @@ language: ruby
 cache: bundler
 sudo: false
 bundler_args: --without development
-before_script: "bundle exec rake refinery:testing:dummy_app"
-script: "bundle exec rspec spec"
+before_script: "bin/rake refinery:testing:dummy_app"
+script: "bin/rspec spec"
 notifications:
   email: true
   irc:
