@@ -107,15 +107,15 @@ If you have enabled captions, you can show them like this
 
 ```erb
 <% content_for :body_content_right do %>
-  <ul id='gallery'>
+  <section id='gallery'>
     <% @page.images.each_with_index do |image, index| %>
-      <li>
+      <figure>
         <%= link_to image_tag(image.thumbnail(geometry: "200x200#c").url),
                     image.thumbnail(geometry: "900x600").url %>
-        <span class='caption'><%=raw @page.caption_for_image_index(index) %></span>
-      </li>
+        <figcaption><%=raw @page.caption_for_image_index(index) %></figcaption>
+      </figure>
    <% end %>
-  </ul>
+  </section>
 <% end %>
 <%= render :partial => "/refinery/content_page" %>
 ```
@@ -123,7 +123,7 @@ or like this
 ```erb
 <% content_for :body_content_right do %>
   <section id='gallery'>
-    <% @page.images_with_captions do |iwc| %>
+    <% @page.images_with_captions.each do |iwc| %>
       <figure>
         <%= link_to image_tag(iwc.image.thumbnail(geometry: "200x200#c").url),
                     iwc.image.thumbnail(geometry: "900x600").url %>
