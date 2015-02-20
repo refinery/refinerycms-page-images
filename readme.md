@@ -134,6 +134,29 @@ or like this
 <% end %>
 <%= render :partial => "/refinery/content_page" %>
 ```
+## Refinerycms-blog support
+
+Contrary to its name, `refinerycms-page-images` also works with `refinerycms-blog` and adds the functionality to link images to blog posts.
+
+If `refinerycms-blog` is installed on your rails app, `refinerycms-page-images` will automatically detect it and perform the adequate initialization. PageImages are assigned to a polymorph "page" object, wich can be a `Refinery::Page` or a `Blog::Post`.
+
+Thus, once installed, you can simply call a blog post's images the same way you'd call them for a page, like this
+
+```erb
+<% @blog_posts.each do |blog_post| %>
+  <ul id='gallery'>
+    <% blog_post.images.each do |image| %>
+      <li>
+        <%= link_to image_tag(image.thumbnail(geometry: "200x200#c").url),
+                    image.thumbnail(geometry: "900x600").url %>
+      </li>
+   <% end %>
+  </ul>
+<% end %>
+<%= render :partial => "/refinery/content_page" %>
+```
+
+
 ## Screenshot
 
 ![Refinery CMS Page Images Screenshot](http://refinerycms.com/system/images/0000/1736/refinerycms-page-images.png)
