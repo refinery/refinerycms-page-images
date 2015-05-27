@@ -34,6 +34,7 @@ module Refinery
 
       config.to_prepare do
         Refinery::PageImages.attach!
+        Rails.application.config.assets.precompile += %w(refinery/page-image-picker.js refinery/page-image-picker.css)
       end
 
       config.after_initialize do

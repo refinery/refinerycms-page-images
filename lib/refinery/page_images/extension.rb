@@ -8,7 +8,6 @@ module Refinery
         # this is because images_attributes= overrides accepts_nested_attributes_for.
 
         accepts_nested_attributes_for :images, :allow_destroy => false
-
         # need to do it this way because of the way accepts_nested_attributes_for
         # deletes an already defined images_attributes
         module_eval do
