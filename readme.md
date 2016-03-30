@@ -1,5 +1,7 @@
 # Page Images Engine for Refinery CMS
 
+[![Build Status](https://travis-ci.org/refinery/refinerycms-page-images.svg?branch=master)](https://travis-ci.org/refinery/refinerycms-page-images)
+
 ## About
 
 Page Images allows you to relate one or more images to any page in Refinery which makes it really easy for you to create simple image galleries with lightbox style popups on the front end page views.
