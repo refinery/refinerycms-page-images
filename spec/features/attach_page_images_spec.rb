@@ -1,8 +1,8 @@
 require "spec_helper"
 
-describe "attach page images", :type => :feature do
-  refinery_login_with :refinery_user
-
+describe "attach page images", type: :feature do
+  refinery_login
+  
   # No-op block : use default configuration by default
   let(:configure) {}
   let(:create_page) { FactoryGirl.create(:page) }
