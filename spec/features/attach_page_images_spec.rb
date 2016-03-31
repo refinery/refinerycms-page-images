@@ -2,10 +2,10 @@ require "spec_helper"
 
 describe "attach page images", type: :feature do
   refinery_login
-  
+
   # No-op block : use default configuration by default
   let(:configure) {}
-  let(:create_page) { FactoryGirl.create(:page) }
+  let(:create_page) { FactoryGirl.create(:page_with_page_part) }
   let(:navigate_to_edit)  { click_link "Edit this page" }
   let(:page_images_tab_id) { "#custom_#{::I18n.t(:'refinery.plugins.refinery_page_images.tab_name')}_tab"  }
 
