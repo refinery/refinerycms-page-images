@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :page_with_image, :parent => :page do
+  factory :page_with_image, :parent => :page_with_page_part do
     after(:create) { |p| p.image_pages.create(image: FactoryGirl.create(:image)) }
   end
 

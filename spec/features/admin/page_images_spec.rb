@@ -1,10 +1,10 @@
 require "spec_helper"
 
-describe "page images", :type => :feature do
-  refinery_login_with :refinery_user
+describe "page images", type: :feature do
+  refinery_login
 
   let(:configure) {}
-  let(:page_for_images) { FactoryGirl.create(:page) }
+  let(:page_for_images) { FactoryGirl.create(:page_with_page_part) }
   let(:image) { FactoryGirl.create(:image) }
   let(:navigate_to_edit) { visit refinery.edit_admin_page_path(page_for_images) }
   let(:page_images_tab_id) { "#custom_#{::I18n.t(:'refinery.plugins.refinery_page_images.tab_name')}_tab" }
@@ -16,7 +16,7 @@ describe "page images", :type => :feature do
   end
 
   # Regression test for #100 and #102
-  it "can add a page image to the db", :js => true do
+  it "can add a page image to the db", js: true do
 
     image
     setup_and_visit
@@ -31,7 +31,7 @@ describe "page images", :type => :feature do
     expect(page).to have_selector 'iframe#dialog_iframe'
     page.within_frame('dialog_iframe') do
       find(:css, "#existing_image_area img#image_#{image.id}").click
-      click_button ::I18n.t('button_text', :scope => 'refinery.admin.images.existing_image')
+      click_button ::I18n.t('button_text', scope: 'refinery.admin.images.existing_image')
     end
 
     # image should be visable on the page
@@ -49,7 +49,7 @@ describe "page images", :type => :feature do
     let(:page_for_images) { FactoryGirl.create(:page_with_image) }
 
     # Regression test for #100 and #102
-    it "can remove a page image to the db", :js => true do
+    it "can remove a page image to the db", js: true do
 
       setup_and_visit
 
