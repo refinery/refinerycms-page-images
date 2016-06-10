@@ -38,6 +38,8 @@ Now when you start up your Refinery application, edit a page and there should be
 
 # Deploying to Heroku
 
+Note: the following information about assets on Heroku might be out of date.
+
 In order to properly precompile assets on Heroku, config vars must be present in the environment during slug compilation.
 
 ```bash
