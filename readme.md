@@ -23,7 +23,7 @@ Page Images allows you to relate one or more images to any page in Refinery whic
 Add this line to your application's `Gemfile`
 
 ```ruby
-gem 'refinerycms-page-images', '~> 3.0.0'
+gem 'refinerycms-page-images', '~> 3.0.0', github: "refinery/refinerycms-page-images", branch: "master"
 ```
 
 Next run
