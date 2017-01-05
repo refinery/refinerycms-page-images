@@ -1,0 +1,17 @@
+da:
+  refinery:
+    plugins:
+      refinery_page_images:
+        title: Sidebilleder
+        tab_name: Billeder
+        description: Sidebilleder tillader dig at relatere et eller flere billeder til en hvilken som helst side i Refinery, der gør det nemt for dig at oprette simple gallerier med lightbox style popups på frontend siderne.
+    js:
+      admin:
+        page_images:
+          add_caption: Tilføj billedtekst
+          done: Færdig
+    admin:
+      pages:
+        tabs:
+          images_bar:
+            add: Tilføj billede
