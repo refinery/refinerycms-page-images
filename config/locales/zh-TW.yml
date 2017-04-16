@@ -4,7 +4,7 @@ zh-TW:
       refinery_page_images:
         tab_name: 頁面圖片
         title: 頁面圖片
-        tab_name: 圖片
+        tab_name_tab: 圖片
         description: 頁面圖片讓您關連一幅或多幅圖片至系統中任何頁面。讓您能非常簡易建立簡單的圖片庫，並加上如 lightbox 的跳出視窗。
     js:
       admin:
