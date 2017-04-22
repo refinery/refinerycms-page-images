@@ -104,6 +104,7 @@ var image_added; // Global callback
   };
 
   image_added = function(images) {
+    images = Array.isArray(images) ? images : [images];
     images.forEach(function (image){
       var current_list_item = template_li.clone(),
           image_id = $(image).attr('id').replace('image_', '');
