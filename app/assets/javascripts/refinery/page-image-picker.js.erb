@@ -103,20 +103,22 @@ var image_added; // Global callback
     reindex_images();
   };
 
-  image_added = function(image) {
-    var current_list_item = template_li.clone(),
-        image_id = $(image).attr('id').replace('image_', '');
-    current_list_item.find('input:hidden:first').val(image_id);
+  image_added = function(images) {
+    images.forEach(function (image){
+      var current_list_item = template_li.clone(),
+          image_id = $(image).attr('id').replace('image_', '');
+      current_list_item.find('input:hidden:first').val(image_id);
 
-    $("<img />").attr({
-      title: $(image).attr('title')
-      , alt: $(image).attr('alt')
-      , src: $(image).attr('data-grid') // use 'grid' size that is built into Refinery CMS (135x135#c).
-    }).appendTo(current_list_item);
+      $("<img />").attr({
+        title: $(image).attr('title')
+        , alt: $(image).attr('alt')
+        , src: $(image).attr('data-grid') // use 'grid' size that is built into Refinery CMS (135x135#c).
+      }).appendTo(current_list_item);
 
-    current_list_item.attr('id', 'image_' + image_id).removeClass('empty');
+      current_list_item.attr('id', 'image_' + image_id).removeClass('empty');
 
-    current_list_item.appendTo($('#page_images'));
+      current_list_item.appendTo($('#page_images'));
+    });
     reset_functionality();
   };
 
