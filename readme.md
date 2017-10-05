@@ -8,7 +8,7 @@ Page Images allows you to relate one or more images to any page in Refinery whic
 
 ## Requirements
 
-* refinerycms >= 3.0.0
+* refinerycms-pages ~> 4.0
 
 ## Features
 
@@ -23,7 +23,7 @@ Page Images allows you to relate one or more images to any page in Refinery whic
 Add this line to your application's `Gemfile`
 
 ```ruby
-gem 'refinerycms-page-images', '~> 3.0.0', github: "refinery/refinerycms-page-images", branch: "master"
+gem 'refinerycms-page-images', '~> 4.0.0', git: "https://github.com/refinery/refinerycms-page-images", branch: "master"
 ```
 
 Next run
@@ -74,7 +74,7 @@ Refinery::PageImages.wysiwyg = false
 Note that WYMeditor support requires that you have the extension in your Gemfile:
 
 ```ruby
-gem 'refinerycms-wymeditor', '~> 1.0.0'
+gem 'refinerycms-wymeditor', ['~> 2.0', '>= 2.0.0']
 ```
 
 ## Usage

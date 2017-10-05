@@ -1,4 +1,4 @@
-class CreatePageImages < ActiveRecord::Migration
+class CreatePageImages < ActiveRecord::Migration[4.2]
   def change
     create_table Refinery::ImagePage.table_name, :id => false do |t|
       t.integer :image_id

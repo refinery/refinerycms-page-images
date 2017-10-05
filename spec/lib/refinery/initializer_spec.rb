@@ -27,7 +27,7 @@ describe Refinery::PageImages::Engine do
 
       expect(Refinery::PageImages::EnableForMock::Model).to receive(:has_many_page_images).once
       expect(Refinery::Page).not_to receive(:has_many_page_images)
-      ActionDispatch::Reloader.prepare!
+      Rails.application.reloader.prepare!
     end
   end
 
