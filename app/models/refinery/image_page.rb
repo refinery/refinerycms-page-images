@@ -5,5 +5,7 @@ module Refinery
     belongs_to :page, polymorphic: true, touch: true
 
     translates :caption
+
+    attribute :caption
   end
 end
