@@ -4,12 +4,12 @@ module Refinery
   module Blog
     describe Post, type: :model do
       it "should not have images" do
-        blog = FactoryGirl.create(:blog_post)
+        blog = FactoryBot.create(:blog_post)
         expect(blog.images.count).to eq(0)
       end
 
       it "should have images" do
-        blog = FactoryGirl.create(:blog_post_with_image)
+        blog = FactoryBot.create(:blog_post_with_image)
         expect(blog.images.count).to eq(1)
       end
     end

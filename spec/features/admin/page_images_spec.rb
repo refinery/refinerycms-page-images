@@ -4,8 +4,8 @@ describe "page images", type: :feature do
   refinery_login
 
   let(:configure) {}
-  let(:page_for_images) { FactoryGirl.create(:page_with_page_part) }
-  let(:image) { FactoryGirl.create(:image) }
+  let(:page_for_images) { FactoryBot.create(:page_with_page_part) }
+  let(:image) { FactoryBot.create(:image) }
   let(:navigate_to_edit) { visit refinery.edit_admin_page_path(page_for_images) }
   let(:page_images_tab_id) { "#custom_#{::I18n.t(:'refinery.plugins.refinery_page_images.tab_name')}_tab" }
 
@@ -46,7 +46,7 @@ describe "page images", type: :feature do
 
   context "with images" do
 
-    let(:page_for_images) { FactoryGirl.create(:page_with_image) }
+    let(:page_for_images) { FactoryBot.create(:page_with_image) }
 
     # Regression test for #100 and #102
     it "can remove a page image to the db", js: true do
