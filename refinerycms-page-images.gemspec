@@ -14,5 +14,5 @@ Gem::Specification.new do |s|
 
   s.add_dependency    'refinerycms-pages', ['~> 4.0', '>= 4.0.0']
   s.add_dependency    'decorators',        '~> 2.0'
-  s.add_dependency    'globalize',         ['>= 5.1.0.beta1', '< 5.2']
+  s.add_dependency    'globalize',         '~> 5.1.0'
 end
