@@ -2,24 +2,24 @@ require 'spec_helper'
 
 module Refinery
   describe Page, type: :model do
-    let!(:page) { FactoryGirl.create :page }
+    let!(:page) { FactoryBot.create :page }
     it "can have images added" do
       expect {
-        page.image_pages.create(image: FactoryGirl.build(:image))
+        page.image_pages.create(image: FactoryBot.build(:image))
       }.to change{page.images.count}.from(0).to(1)
     end
 
     describe '#images_with_captions' do
       it 'returns an images_with_captions collection' do
         expect {
-          page.image_pages.create(image: FactoryGirl.build(:image))
+          page.image_pages.create(image: FactoryBot.build(:image))
         }.to change{page.images_with_captions.count}.from(0).to(1)
       end
 
       it 'returns an image and a caption' do
         expect(page.images_with_captions.count).to eq(0)
 
-        page.image_pages.create(image: FactoryGirl.build(:image))
+        page.image_pages.create(image: FactoryBot.build(:image))
         expect(page.images_with_captions.first[:image]).to be_a(Refinery::Image)
         expect(page.images_with_captions.first[:caption]).to be_a(String)
       end
@@ -28,7 +28,7 @@ module Refinery
 
     describe "#images_attributes=" do
       it "adds images" do
-        image = FactoryGirl.create(:image)
+        image = FactoryBot.create(:image)
 
         expect {
           page.update_attributes({:images_attributes => {"0" => {"id" => image.id}}})
@@ -36,7 +36,7 @@ module Refinery
       end
 
       context 'with images' do
-        let!(:images) { [FactoryGirl.create(:image), FactoryGirl.create(:image)] }
+        let!(:images) { [FactoryBot.create(:image), FactoryBot.create(:image)] }
         before do
           images.each do |image|
             page.image_pages.create(image: image)

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 module Refinery
   describe ImagePage, type: :model do
-    let!(:image_page) { FactoryGirl.create(:image_page) }
+    let!(:image_page) { FactoryBot.create(:image_page) }
 
     describe "touching" do
       let(:original_updated_at) { 1.day.ago }

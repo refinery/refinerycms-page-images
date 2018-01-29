@@ -1,4 +1,4 @@
-class TranslatePageImageCaptions < ActiveRecord::Migration
+class TranslatePageImageCaptions < ActiveRecord::Migration[4.2]
   def up
     add_column Refinery::ImagePage.table_name, :id, :primary_key
 

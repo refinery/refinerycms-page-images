@@ -2,7 +2,7 @@ source "http://rubygems.org"
 
 gemspec
 
-git 'https://github.com/refinery/refinerycms', branch: '3-0-stable' do
+git "https://github.com/refinery/refinerycms", branch: "master" do
   gem 'refinerycms'
 
   group :development, :test do
@@ -10,7 +10,11 @@ git 'https://github.com/refinery/refinerycms', branch: '3-0-stable' do
   end
 end
 
-gem 'refinerycms-wymeditor', '~> 1.0.0'
+gem 'refinerycms-wymeditor', ['~> 2.0', '>= 2.0.0']
+
+group :development do
+  gem 'listen'
+end
 
 group :test do
   gem 'poltergeist'
@@ -30,12 +34,14 @@ end
 
 if !ENV['TRAVIS'] || ENV['DB'] == 'postgresql'
   gem 'activerecord-jdbcpostgresql-adapter', :platform => :jruby
-  gem 'pg', :platform => :ruby
+  gem 'pg', '~> 0.21', platform: :ruby
 end
 
 # Refinery/rails should pull in the proper versions of these
-gem 'sass-rails', '~> 4.0.0'
-gem 'coffee-rails', '~> 4.0.0'
+group :assets do
+  gem "sass-rails"
+  gem "coffee-rails"
+end
 
 # Load local gems according to Refinery developer preference.
 if File.exist? local_gemfile = File.expand_path('../.gemfile', __FILE__)
