@@ -1,22 +1,17 @@
 class TranslatePageImageCaptions < ActiveRecord::Migration[4.2]
-  def up
-    add_column Refinery::ImagePage.table_name, :id, :primary_key
+  def change
+    create_table :refinery_image_page_translations do |t|
 
-    Refinery::ImagePage.reset_column_information
-    unless defined?(Refinery::ImagePage::Translation) && Refinery::ImagePage::Translation.table_exists?
-      Refinery::ImagePage.create_translation_table!({
-        :caption => :text
-      }, {
-        :migrate_data => true
-      })
+      # Translated attribute(s)
+      t.text :caption
+
+      t.string  :locale, null: false
+      t.integer :refinery_image_page_id, null: false
+
+      t.timestamps null: false
     end
-  end
 
-  def down
-    Refinery::ImagePage.reset_column_information
-
-    Refinery::ImagePage.drop_translation_table! :migrate_data => true
-
-    remove_column Refinery::ImagePage.table_name, :id
+    add_index :refinery_image_page_translations, :locale, name: :index_refinery_image_page_translations_on_locale
+    add_index :refinery_image_page_translations, [:refinery_image_page_id, :locale], name: :index_114aab0bbdedc79d0ec4f4b, unique: true
   end
 end
