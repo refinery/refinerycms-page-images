@@ -13,7 +13,6 @@ end
 
 # TODO: remove refinerycms-i18n and mobility from this Gemfile before merging this PR
 gem 'refinerycms-i18n', git: "https://github.com/refinery/refinerycms-i18n", branch: 'feature/mobility'
-gem 'mobility', git: "https://github.com/shioyama/mobility", branch: 'master'
 
 gem 'refinerycms-wymeditor', ['~> 2.0', '>= 2.0.0']
 
