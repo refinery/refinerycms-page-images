@@ -1,4 +1,4 @@
-require 'refinerycms-pages'
+require 'refinerycms-core'
 
 module Refinery
   autoload :PageImagesGenerator, 'generators/refinery/page_images_generator'
