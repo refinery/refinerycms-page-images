@@ -2,17 +2,13 @@ source "http://rubygems.org"
 
 gemspec
 
-# TODO: use master branch before merging this PR
-git "https://github.com/refinery/refinerycms", branch: "feature/mobility" do
+git "https://github.com/refinery/refinerycms", branch: "master" do
   gem 'refinerycms'
 
   group :development, :test do
     gem 'refinerycms-testing'
   end
 end
-
-# TODO: remove refinerycms-i18n and mobility from this Gemfile before merging this PR
-gem 'refinerycms-i18n', git: "https://github.com/refinery/refinerycms-i18n", branch: 'feature/mobility'
 
 gem 'refinerycms-wymeditor', ['~> 2.0', '>= 2.0.0']
 
