@@ -6,7 +6,7 @@ describe "attach page images", type: :feature do
   # No-op block : use default configuration by default
   let(:configure) {}
   let(:create_page) { FactoryBot.create(:page_with_page_part) }
-  let(:navigate_to_edit)  { click_link "Edit this page" }
+  let(:navigate_to_edit)  { page.find('.edit_icon', match: :first).click }
   let(:page_images_tab_id) { "#custom_#{::I18n.t(:'refinery.plugins.refinery_page_images.tab_name')}_tab"  }
 
   let(:setup_and_visit) do
@@ -41,7 +41,6 @@ describe "attach page images", type: :feature do
     end
 
     let(:create_page) { FactoryBot.create(:page_with_image) }
-    let(:navigate_to_edit) { page.find('a[tooltip="Edit this page"]').click }
 
     it "shows a plain textarea when editing caption", js: true do
       setup_and_visit

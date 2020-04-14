@@ -12,9 +12,8 @@ Gem::Specification.new do |s|
   s.files             = `git ls-files`.split("\n")
   s.test_files        = `git ls-files -- spec/*`.split("\n")
 
-  s.add_dependency    'refinerycms-pages', ['~> 4.0', '>= 4.0.0']
-  s.add_dependency    'decorators',        '~> 2.0'
-  s.add_dependency    'globalize',         '~> 5.1.0'
+  s.add_dependency    'refinerycms-core', ['~> 4.0', '>= 4.0.0']
+  s.add_dependency    'refinerycms-images', ['~> 4.0', '>= 4.0.0']
 
   s.cert_chain  = [File.expand_path("../certs/parndt.pem", __FILE__)]
   if $0 =~ /gem\z/ && ARGV.include?("build") && ARGV.include?(__FILE__)
