@@ -34,7 +34,7 @@ end
 
 if !ENV['TRAVIS'] || ENV['DB'] == 'postgresql'
   gem 'activerecord-jdbcpostgresql-adapter', :platform => :jruby
-  gem 'pg', '~> 0.21', platform: :ruby
+  gem 'pg', '~> 1.2', platform: :ruby
 end
 
 # Refinery/rails should pull in the proper versions of these
