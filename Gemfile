@@ -10,7 +10,7 @@ git "https://github.com/refinery/refinerycms", branch: "master" do
   end
 end
 
-gem 'refinerycms-wymeditor', ['~> 2.0', '>= 2.0.0']
+gem 'refinerycms-wymeditor', '~> 3.0'
 
 group :development do
   gem 'listen'
